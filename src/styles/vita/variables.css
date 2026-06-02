@@ -1,0 +1,81 @@
+/* ──────────────────────────────────────────────────────────────────
+   PS VITA VIEW — CSS CUSTOM PROPERTIES
+   All custom properties are scoped to [data-view="vita"] on :root.
+   Vita accent system is built around #00BFFF (cerulean blue) — the
+   defining colour of the original PS Vita XMB interface.
+   Components MUST reference these variables — never hard-code values.
+   ────────────────────────────────────────────────────────────────── */
+
+@layer variables {
+  :root[data-view="vita"] {
+    /* ── Typography — Font Families ── */
+    --font-vita-ui:   'Rajdhani', 'PlayStation', sans-serif;
+    --font-vita-body: 'DM Sans', sans-serif;
+
+    /* ── Color — Backgrounds ── */
+    --color-vita-bg-deep:  rgba(0, 10, 40, 1);    /* Deep navy — base background */
+    --color-vita-bg-mid:   rgba(0, 30, 80, 1);    /* Mid-tone for gradient */
+    --color-vita-bg-panel: rgba(8, 14, 30, 0.96); /* LiveArea panel background */
+
+    /* ── Color — Accents (cerulean-centric) ── */
+    --color-vita-cerulean:   #00BFFF;              /* Primary accent */
+    --color-vita-blue:       rgba(0, 140, 230, 0.9);
+    --color-vita-blue-deep:  rgba(0, 80, 180, 0.9);
+    --color-vita-purple:     rgba(80, 0, 180, 0.25);
+
+    /* ── Color — Text ── */
+    --color-vita-text-primary:   rgba(255, 255, 255, 0.9);
+    --color-vita-text-secondary: rgba(255, 255, 255, 0.7);
+    --color-vita-text-dim:       rgba(255, 255, 255, 0.35);
+    --color-vita-text-header:    rgba(0, 191, 255, 0.7);  /* Panel section labels */
+
+    /* ── Color — Borders ── */
+    --color-vita-border:          rgba(0, 191, 255, 0.25);
+    --color-vita-border-hover:    rgba(0, 191, 255, 0.8);
+    --color-vita-border-panel:    rgba(0, 191, 255, 0.1);
+    --color-vita-border-livearea: rgba(0, 191, 255, 0.25);
+
+    /* ── Bubble Animation Defaults ──
+       These are the fallback values. Each bubble overrides them via
+       inline style custom properties set by BubbleGrid.ts. */
+    --bubble-float-duration:  4s;
+    --bubble-float-delay:     0s;
+    --bubble-float-amplitude: 12px;
+
+    /* ── LiveArea Dimensions ── */
+    --livearea-max-width:     960px;
+    --livearea-border-radius: 4px;
+    --livearea-backdrop-blur: 8px;
+
+    /* ── Transitions ── */
+    --transition-vita-base:   200ms ease-out;
+    --transition-vita-spring: 280ms cubic-bezier(0.22, 1, 0.36, 1);
+    --transition-vita-bounce: 200ms cubic-bezier(0.34, 1.56, 0.64, 1);
+    --transition-vita-open:   cubic-bezier(0.22, 1, 0.36, 1);
+
+    /* ── Shadows / Glows ── */
+    --shadow-bubble-idle:
+      0 0 0 1.5px rgba(0, 191, 255, 0.4),
+      0 8px 24px rgba(0, 0, 0, 0.5),
+      inset 0 1px 1px rgba(255, 255, 255, 0.2);
+
+    --shadow-bubble-hover:
+      0 0 0 2px rgba(0, 191, 255, 0.8),
+      0 0 20px rgba(0, 191, 255, 0.5),
+      0 12px 32px rgba(0, 0, 0, 0.6);
+
+    --shadow-livearea-panel:
+      0 0 0 1px rgba(0, 191, 255, 0.1),
+      0 32px 80px rgba(0, 0, 0, 0.8),
+      inset 0 1px 0 rgba(255, 255, 255, 0.06);
+
+    --shadow-start-btn:
+      0 0 20px rgba(0, 191, 255, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+
+    --shadow-start-btn-hover:
+      0 0 32px rgba(0, 191, 255, 0.6),
+      0 0 8px rgba(0, 191, 255, 0.8),
+      inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  }
+}

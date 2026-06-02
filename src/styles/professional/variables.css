@@ -1,0 +1,71 @@
+/* ──────────────────────────────────────────────────────────────────
+   PROFESSIONAL VIEW — CSS CUSTOM PROPERTIES
+   All custom properties are scoped to [data-view="professional"] on :root
+   so they are only active when the Professional Executive View is rendered.
+   Components MUST reference these variables — never hard-code values.
+   ────────────────────────────────────────────────────────────────── */
+
+@layer variables {
+  :root[data-view="professional"] {
+    /* ── Typography — Font Families ── */
+    --font-display: 'Instrument Serif', 'Georgia', serif;
+    --font-mono:    'DM Mono', 'Fira Code', monospace;
+    --font-ui:      'Geist', 'Helvetica Neue', sans-serif;
+
+    /* ── Typography — Type Scale ── */
+    --type-scale-xs:   0.75rem;    /* 12px — labels, captions */
+    --type-scale-sm:   0.875rem;   /* 14px — metadata, secondary info */
+    --type-scale-base: 1rem;       /* 16px — body copy */
+    --type-scale-md:   1.125rem;   /* 18px — card descriptions */
+    --type-scale-lg:   1.5rem;     /* 24px — section headers */
+    --type-scale-xl:   2.5rem;     /* 40px — hero name */
+    --type-scale-2xl:  4rem;       /* 64px — display headline */
+
+    /* ── Typography — Line Heights ── */
+    --line-height-tight: 1.2;
+    --line-height-body:  1.65;
+    --line-height-loose: 1.9;
+
+    /* ── Typography — Letter Spacing ── */
+    --letter-spacing-tight:   -0.03em;
+    --letter-spacing-normal:   0em;
+    --letter-spacing-wide:     0.08em;
+    --letter-spacing-widest:   0.15em;
+
+    /* ── Color — Backgrounds ── */
+    --color-bg-primary:   #F8F7F4;  /* Warm off-white */
+    --color-bg-secondary: #EDECEA;  /* Subtle card backgrounds */
+    --color-bg-inverse:   #0F0F0E;  /* Footer, hero accent blocks */
+
+    /* ── Color — Text ── */
+    --color-text-primary:   #0F0F0E;  /* Near-black — richer than #000 */
+    --color-text-secondary: #4A4845;  /* Medium gray for secondary copy */
+    --color-text-tertiary:  #8C8986;  /* Light gray for metadata/captions */
+    --color-text-inverse:   #F8F7F4;
+
+    /* ── Color — Accents ── */
+    --color-accent-primary:   #1A3A5C;  /* Deep navy — professional authority */
+    --color-accent-secondary: #C8A97E;  /* Warm gold — deliberate, not garish */
+    --color-accent-tertiary:  #2D6A4F;  /* Muted forest green — tech tag chips */
+
+    /* ── Color — Borders ── */
+    --color-border-subtle: rgba(15, 15, 14, 0.08);
+    --color-border-medium: rgba(15, 15, 14, 0.16);
+
+    /* ── Layout ── */
+    --nav-height:          64px;
+    --content-max-width:   1280px;
+    --content-padding-x:   clamp(20px, 5vw, 80px);
+    --section-gap:         clamp(80px, 10vw, 140px);
+    --card-border-radius:  8px;
+
+    /* ── Transitions ── */
+    --transition-base:   200ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    --transition-bounce: 200ms cubic-bezier(0.34, 1.56, 0.64, 1);
+    --transition-spring: 300ms cubic-bezier(0.22, 1, 0.36, 1);
+
+    /* ── Shadows ── */
+    --shadow-card-hover: 0 12px 32px rgba(0, 0, 0, 0.08);
+    --shadow-nav:        0 1px 0 var(--color-border-subtle);
+  }
+}

@@ -1,0 +1,32 @@
+[
+  {
+    "id": "realtime-collab-editor",
+    "title": "Realtime Collaborative Editor",
+    "subtitle": "Google Docs-scale conflict resolution using CRDTs in the browser",
+    "description": "A fully browser-based collaborative text editor built on Yjs CRDTs and WebRTC peer signaling. Supports concurrent multi-cursor editing with sub-50ms sync latency across LAN peers. Implements a custom undo/redo stack that respects concurrent edit history.",
+    "technicalChallenges": [
+      {
+        "title": "CRDT Merge Conflicts Under High Concurrency",
+        "description": "Standard OT algorithms fail under simultaneous three-way edits. Yjs Y.Text with CRDT semantics resolves all merge cases deterministically without a central authority server, enabling true peer-to-peer convergence."
+      },
+      {
+        "title": "WebRTC Signaling Without a Dedicated Server",
+        "description": "Used y-webrtc's built-in BroadcastChannel fallback for same-device tabs and a lightweight Cloudflare Worker as the ICE signaling relay, keeping infrastructure costs at zero for the demo tier."
+      }
+    ],
+    "techStack": ["TypeScript", "Yjs", "WebRTC", "ProseMirror", "Vite", "Cloudflare Workers"],
+    "links": {
+      "repository": "https://github.com/username/realtime-collab-editor",
+      "liveApp": "https://collab-editor.username.dev"
+    },
+    "assets": {
+      "vitaBubbleIcon": "/assets/vita/icons/collab-editor-bubble.png",
+      "vitaLiveAreaBanner": "/assets/vita/banners/collab-editor-banner.png",
+      "professionalCardImage": "/assets/professional/cards/collab-editor-card.webp",
+      "imageAlt": "Screenshot of collaborative editor with two cursors visible in a shared document"
+    },
+    "completedAt": "2024-08-15",
+    "displayOrder": 1,
+    "featured": true
+  }
+]

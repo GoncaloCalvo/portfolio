@@ -1,0 +1,38 @@
+/* ──────────────────────────────────────────────────────────────────
+   FONTS
+   Font loading is handled via <link> tags in index.html for optimal
+   LCP performance (preconnect + priority preload for Instrument Serif).
+
+   This file establishes font-feature-settings and rendering hints
+   that apply globally regardless of which view is active.
+   ────────────────────────────────────────────────────────────────── */
+
+/* Fonts loaded from Google Fonts (see index.html):
+   - Instrument Serif        — editorial display, Professional hero/headlines
+   - DM Mono (300/400/500)   — technical mono, Professional body metadata
+   - Geist (300/400/500/600) — clean UI font, Professional nav/labels
+   - Rajdhani (400/600/700)  — PS Vita UI approximation, Vita view
+   - DM Sans (400/500)       — readable body text, Vita LiveArea panels
+*/
+
+@layer base {
+  /* Tabular numerals + slashed zero for all monospace contexts */
+  code,
+  pre,
+  kbd,
+  samp {
+    font-feature-settings: 'tnum' 1, 'zero' 1, 'ss01' 1;
+  }
+
+  /* Optical sizing for large display text */
+  h1,
+  h2 {
+    font-optical-sizing: auto;
+  }
+
+  /* Improved subpixel rendering for light text on dark Vita backgrounds */
+  [data-view="vita"] {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}

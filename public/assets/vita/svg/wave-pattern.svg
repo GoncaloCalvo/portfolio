@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 200" preserveAspectRatio="xMidYMid slice">
+  <!-- Primary wave: broad, slow frequency -->
+  <path
+    d="M0,120 C180,40 360,200 540,120 C720,40 900,200 1080,120 C1260,40 1380,160 1440,120
+       L1440,200 L0,200 Z"
+    fill="rgba(0,191,255,0.6)"
+  />
+  <!-- Secondary wave: slightly higher frequency for organic variation -->
+  <path
+    d="M0,150 C120,100 280,190 440,145 C600,100 760,185 920,145
+       C1080,105 1260,175 1440,140 L1440,200 L0,200 Z"
+    fill="rgba(0,140,230,0.4)"
+  />
+</svg>

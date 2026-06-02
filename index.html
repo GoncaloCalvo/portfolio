@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- FOUC prevention: MUST be the first element in <head>, before any stylesheet.
+       Sets [data-view] on <html> before CSSOM construction so both views are
+       correctly hidden/shown without a flash of unstyled content. -->
+  <script>
+    (function() {
+      var mode = localStorage.getItem('portfolio_view_mode') || 'professional';
+      document.documentElement.setAttribute('data-view', mode);
+    })();
+  </script>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Portfolio — Frontend Engineer &amp; Creative Technologist" />
+
+  <title>Portfolio</title>
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Portfolio" />
+  <meta property="og:description" content="Frontend Engineer &amp; Creative Technologist" />
+  <meta property="og:image" content="/og-image.png" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Favicons -->
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+
+  <!-- Font preconnects -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <!-- Priority preload: Instrument Serif is the critical display font (LCP element) -->
+  <link
+    rel="preload"
+    as="style"
+    href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap"
+  />
+
+  <!-- All typefaces in a single request to minimise round trips.
+       Subsetted to Latin (&subset=latin) via Google Fonts default behaviour. -->
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Geist:wght@300;400;500;600&family=Rajdhani:wght@400;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;1,9..40,400&display=swap"
+  />
+</head>
+<body>
+  <!-- Skip link — first focusable element per WCAG 2.4.1 -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div id="app">
+
+    <!-- Persistent view toggle — always visible, lives outside view containers -->
+    <button
+      class="view-toggle"
+      id="view-toggle-btn"
+      type="button"
+      aria-live="polite"
+      aria-label="Switch to PS Vita Mode"
+      data-current-view="professional"
+    >
+      <span class="view-toggle__icon" aria-hidden="true">⊗</span>
+      <span class="view-toggle__label">PS VITA MODE</span>
+    </button>
+
+    <!-- ── Professional Executive View ── -->
+    <div id="view-professional" aria-label="Professional View">
+      <main id="main-content">
+        <!-- ProfessionalView component mounts here (Phase 2) -->
+      </main>
+    </div>
+
+    <!-- ── PS Vita Immersive View ── -->
+    <div id="view-vita" aria-label="PS Vita View">
+      <!-- VitaView component mounts here (Phase 3) -->
+    </div>
+
+  </div>
+
+  <script type="module" src="/src/main.ts"></script>
+</body>
+</html>

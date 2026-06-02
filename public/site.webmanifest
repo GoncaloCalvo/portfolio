@@ -1,0 +1,15 @@
+{
+  "name": "Portfolio",
+  "short_name": "Portfolio",
+  "icons": [
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F8F7F4",
+  "theme_color": "#0F0F0E"
+}
