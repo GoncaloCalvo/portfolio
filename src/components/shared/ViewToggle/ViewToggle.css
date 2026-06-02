@@ -1,0 +1,108 @@
+@layer components {
+  .view-toggle {
+    position: fixed;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px 8px 10px;
+    border-radius: 100px;
+    cursor: pointer;
+    user-select: none;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+    border: none;
+    outline: none;
+    transition:
+      background 300ms ease,
+      box-shadow 300ms ease,
+      color 300ms ease,
+      opacity 300ms ease;
+
+    /* Desktop: top-right corner */
+    top: 20px;
+    right: 24px;
+
+    /* Mobile: bottom-centered where thumbs reach */
+    @media (max-width: 768px) {
+      top: auto;
+      right: auto;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+
+  /* Focus ring — uses currentColor so it adapts to each view's palette */
+  .view-toggle:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 3px;
+  }
+
+  /* ── Professional view: dark pill, about to offer Vita ── */
+  [data-view="professional"] .view-toggle {
+    background: #0f0f0e;
+    color: #f8f7f4;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+    font-family: var(--font-ui, 'Geist', 'Helvetica Neue', sans-serif);
+  }
+
+  [data-view="professional"] .view-toggle:hover {
+    background: #1a3a5c;
+    box-shadow: 0 4px 20px rgba(26, 58, 92, 0.4);
+  }
+
+  /* ── Vita view: glassy cerulean pill, about to offer Professional ── */
+  [data-view="vita"] .view-toggle {
+    background: rgba(0, 191, 255, 0.15);
+    color: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(0, 191, 255, 0.4);
+    box-shadow:
+      0 0 16px rgba(0, 191, 255, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    font-family: var(--font-vita-ui, 'Rajdhani', sans-serif);
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 0.1em;
+  }
+
+  [data-view="vita"] .view-toggle:hover {
+    background: rgba(0, 191, 255, 0.25);
+    box-shadow:
+      0 0 28px rgba(0, 191, 255, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  }
+
+  /* ── Icon badge ── */
+  .view-toggle__icon {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: transform 400ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  [data-view="professional"] .view-toggle__icon {
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  [data-view="vita"] .view-toggle__icon {
+    background: rgba(0, 191, 255, 0.3);
+  }
+
+  /* Rotate icon while transitioning between views */
+  .view-toggle.is-transitioning .view-toggle__icon {
+    transform: rotate(180deg);
+  }
+
+  /* Disabled state during transition */
+  .view-toggle:disabled {
+    cursor: not-allowed;
+    opacity: 0.7;
+  }
+}

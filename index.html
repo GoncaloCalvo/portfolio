@@ -54,18 +54,7 @@
 
   <div id="app">
 
-    <!-- Persistent view toggle — always visible, lives outside view containers -->
-    <button
-      class="view-toggle"
-      id="view-toggle-btn"
-      type="button"
-      aria-live="polite"
-      aria-label="Switch to PS Vita Mode"
-      data-current-view="professional"
-    >
-      <span class="view-toggle__icon" aria-hidden="true">⊗</span>
-      <span class="view-toggle__label">PS VITA MODE</span>
-    </button>
+    <!-- ViewToggle component is mounted here by main.ts (createViewToggle().mount(app)) -->
 
     <!-- ── Professional Executive View ── -->
     <div id="view-professional" aria-label="Professional View">
