@@ -69,3 +69,11 @@
     --shadow-nav:        0 1px 0 var(--color-border-subtle);
   }
 }
+
+/* Base document colours for the Professional view */
+@layer base {
+  [data-view="professional"] body {
+    background-color: #F8F7F4; /* --color-bg-primary, repeated here so it's available before components load */
+    color: #0F0F0E;
+  }
+}

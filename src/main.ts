@@ -3,21 +3,38 @@ import './styles/fonts.css';
 import './styles/professional/variables.css';
 import './styles/vita/variables.css';
 
-import { ViewState, ViewMode } from './state/viewState';
+import { ViewState } from './state/viewState';
 import { createViewToggle } from './components/shared/ViewToggle/ViewToggle';
+import {
+  createProfessionalView,
+  type ComponentInstance,
+} from './components/professional/ProfessionalView';
 
-// Mount persistent ViewToggle first so it is ready to handle the initial viewchange event.
 const app = document.getElementById('app')!;
+const proContainer = document.getElementById('view-professional')!;
+
+// ViewToggle is persistent — mounted once, never destroyed
 const viewToggle = createViewToggle();
 viewToggle.mount(app);
 
-// Fire initial viewchange so all mounted components can synchronize to persisted state.
-// The FOUC inline script already set [data-view] before JS loaded — this call confirms
-// the TypeScript state layer is aligned and broadcasts to any listeners.
-ViewState.set(ViewState.get());
+let proView: ComponentInstance | null = null;
 
-// Core viewchange gateway — Phase 3+ will mount and destroy view-specific components here.
-window.addEventListener('viewchange', (_e: CustomEvent<{ mode: ViewMode }>) => {
-  // Placeholder: professional / vita root component lifecycle will be managed here
-  // once ProfessionalView and VitaView components are implemented.
+window.addEventListener('viewchange', (e) => {
+  const { mode } = e.detail;
+
+  if (mode === 'professional') {
+    if (!proView) {
+      proView = createProfessionalView();
+      proView.mount(proContainer);
+    }
+  } else {
+    if (proView) {
+      proView.destroy();
+      proView = null;
+    }
+  }
 });
+
+// Synchronizes the TypeScript state layer with the FOUC-set [data-view] attribute,
+// then fires viewchange so the component lifecycle above runs on initial load.
+ViewState.set(ViewState.get());

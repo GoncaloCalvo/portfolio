@@ -166,7 +166,7 @@
     }
 
     /* Disable marquee scroll (spec §3.5.3) */
-    .marquee-track {
+    .pro-marquee-track {
       animation: none;
     }
 

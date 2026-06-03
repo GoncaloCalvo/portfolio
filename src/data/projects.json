@@ -28,5 +28,89 @@
     "completedAt": "2024-08-15",
     "displayOrder": 1,
     "featured": true
+  },
+  {
+    "id": "design-system-engine",
+    "title": "Design System Engine",
+    "subtitle": "Token-driven component library with automated visual regression testing",
+    "description": "A monorepo-based design system built for a 40-engineer product org. Tokens are authored in YAML and compiled to CSS custom properties, iOS/Android primitives, and Figma variables simultaneously via a custom Style Dictionary transform pipeline.",
+    "technicalChallenges": [
+      {
+        "title": "Multi-Platform Token Compilation",
+        "description": "Building a single YAML token schema that correctly transforms to platform-specific output required custom Style Dictionary transforms handling platform-specific naming conventions and value resolution."
+      },
+      {
+        "title": "Zero-Flake Visual Regression",
+        "description": "Playwright screenshot comparisons produced 2–3% false-positive rates due to font rendering variance across CI OS images. Canvas-based comparison with configurable pixel tolerance eliminated flakes without masking real regressions."
+      }
+    ],
+    "techStack": ["TypeScript", "Style Dictionary", "Playwright", "Storybook", "CSS", "Vite"],
+    "links": {
+      "repository": "https://github.com/username/design-system-engine"
+    },
+    "assets": {
+      "vitaBubbleIcon": "/assets/vita/icons/design-system-bubble.png",
+      "vitaLiveAreaBanner": "/assets/vita/banners/design-system-banner.png",
+      "professionalCardImage": "/assets/professional/cards/design-system-card.webp",
+      "imageAlt": "Component library documentation site showing button variants and design token table"
+    },
+    "completedAt": "2024-05-20",
+    "displayOrder": 2,
+    "featured": false
+  },
+  {
+    "id": "webgl-shader-lab",
+    "title": "WebGL Shader Lab",
+    "subtitle": "Interactive GLSL shader editor with live preview and texture pipeline",
+    "description": "A browser-based GLSL shader development environment with split-pane live preview, uniform inspector, and texture import. Built on raw WebGL2 with no three.js abstraction — every draw call is explicit. Used internally for rapid shader prototyping on a game UI project.",
+    "technicalChallenges": [
+      {
+        "title": "Zero-Latency Shader Recompilation",
+        "description": "Debouncing recompilation to achieve sub-16ms perceived latency required syntax-error detection on every keystroke using a lightweight GLSL tokenizer, with full GPU recompilation deferred to 300ms after the last edit."
+      },
+      {
+        "title": "GPU Texture Memory Management",
+        "description": "WebGL texture objects must be manually deleted to avoid GPU memory leaks. A reference-counted texture cache with LRU eviction tracks uniform sampler bindings and safely frees unreferenced textures across shader recompiles."
+      }
+    ],
+    "techStack": ["TypeScript", "WebGL2", "GLSL", "CodeMirror", "Vite"],
+    "links": {
+      "repository": "https://github.com/username/webgl-shader-lab",
+      "liveApp": "https://shaderlab.username.dev"
+    },
+    "assets": {
+      "vitaBubbleIcon": "/assets/vita/icons/shader-lab-bubble.png",
+      "vitaLiveAreaBanner": "/assets/vita/banners/shader-lab-banner.png",
+      "professionalCardImage": "/assets/professional/cards/shader-lab-card.webp",
+      "imageAlt": "Split-pane shader editor with GLSL code on the left and rendered output on the right"
+    },
+    "completedAt": "2024-03-10",
+    "displayOrder": 3,
+    "featured": false
+  },
+  {
+    "id": "accessibility-audit-cli",
+    "title": "Accessibility Audit CLI",
+    "subtitle": "Automated WCAG AA scanner with component-aware false-positive filtering",
+    "description": "A Node.js CLI tool that wraps axe-core with project-specific configuration profiles to eliminate class-specific false positives — reducing audit noise by 60% without masking genuine violations. Integrates with CI pipelines as a blocking quality gate.",
+    "technicalChallenges": [
+      {
+        "title": "Context-Aware False Positive Filtering",
+        "description": "axe-core flags decorative aria-hidden images as missing alt text when they appear inside labelled containers. A rule suppression layer correlates violation node ancestry against an allowed-context manifest to filter known-safe patterns."
+      }
+    ],
+    "techStack": ["Node.js", "TypeScript", "axe-core", "Playwright", "Zod"],
+    "links": {
+      "repository": "https://github.com/username/a11y-audit-cli"
+    },
+    "assets": {
+      "vitaBubbleIcon": "/assets/vita/icons/a11y-cli-bubble.png",
+      "vitaLiveAreaBanner": "/assets/vita/banners/a11y-cli-banner.png",
+      "professionalCardImage": "/assets/professional/cards/a11y-cli-card.webp",
+      "imageAlt": "Terminal output showing accessibility audit results with violation counts and severity levels"
+    },
+    "completedAt": "2024-01-08",
+    "displayOrder": 4,
+    "featured": false
   }
 ]

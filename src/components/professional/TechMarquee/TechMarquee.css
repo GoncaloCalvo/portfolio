@@ -1,0 +1,82 @@
+@layer components {
+  .pro-marquee-section {
+    padding: 40px 0;
+    border-top: 1px solid var(--color-border-subtle);
+    border-bottom: 1px solid var(--color-border-subtle);
+    overflow: hidden;
+    position: relative;
+    background: var(--color-bg-primary);
+  }
+
+  /* Fade masks at the left and right edges */
+  .pro-marquee-section::before,
+  .pro-marquee-section::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 80px;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .pro-marquee-section::before {
+    left: 0;
+    background: linear-gradient(to right, var(--color-bg-primary), transparent);
+  }
+
+  .pro-marquee-section::after {
+    right: 0;
+    background: linear-gradient(to left, var(--color-bg-primary), transparent);
+  }
+
+  /* marquee-track class is used by global.css utilities layer for reduced-motion override */
+  .pro-marquee-track {
+    display: flex;
+    width: max-content;
+    animation: proMarqueeScroll 35s linear infinite;
+  }
+
+  .pro-marquee-section:hover .pro-marquee-track {
+    animation-play-state: paused;
+  }
+
+  .pro-marquee__list {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0 6px;
+    flex-shrink: 0;
+  }
+
+  .pro-marquee__chip {
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border-medium);
+    font-family: var(--font-mono);
+    font-size: 13px;
+    padding: 6px 12px;
+    border-radius: 4px;
+    color: var(--color-text-secondary);
+    white-space: nowrap;
+    user-select: none;
+  }
+
+  /* Visually hidden but accessible to screen readers */
+  .pro-marquee__sr-list {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+}
+
+/* Keyframe declared outside @layer to avoid browser compat issues with layer-scoped resolution */
+@keyframes proMarqueeScroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
