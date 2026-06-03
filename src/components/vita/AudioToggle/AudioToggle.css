@@ -1,0 +1,38 @@
+@layer components {
+  .vita-audio-toggle {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 200;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid var(--color-vita-border, rgba(0, 191, 255, 0.3));
+    color: var(--color-vita-text-secondary, rgba(255, 255, 255, 0.7));
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition:
+      border-color var(--transition-vita-base, 200ms ease-out),
+      background var(--transition-vita-base, 200ms ease-out),
+      opacity var(--transition-vita-base, 200ms ease-out);
+  }
+
+  .vita-audio-toggle[aria-pressed="true"] {
+    opacity: 0.45;
+    border-color: rgba(255, 255, 255, 0.15);
+  }
+
+  .vita-audio-toggle:hover {
+    background: rgba(0, 0, 0, 0.75);
+    border-color: var(--color-vita-border-hover, rgba(0, 191, 255, 0.7));
+    opacity: 1;
+  }
+
+  .vita-audio-toggle:focus-visible {
+    outline: 2px solid var(--color-vita-cerulean, #00BFFF);
+    outline-offset: 3px;
+  }
+}

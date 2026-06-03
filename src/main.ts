@@ -9,20 +9,27 @@ import {
   createProfessionalView,
   type ComponentInstance,
 } from './components/professional/ProfessionalView';
+import { createVitaView } from './components/vita/VitaView';
 
 const app = document.getElementById('app')!;
 const proContainer = document.getElementById('view-professional')!;
+const vitaContainer = document.getElementById('view-vita')!;
 
 // ViewToggle is persistent — mounted once, never destroyed
 const viewToggle = createViewToggle();
 viewToggle.mount(app);
 
 let proView: ComponentInstance | null = null;
+let vitaView: ComponentInstance | null = null;
 
 window.addEventListener('viewchange', (e) => {
-  const { mode } = e.detail;
+  const { mode } = (e as CustomEvent<{ mode: string }>).detail;
 
   if (mode === 'professional') {
+    if (vitaView) {
+      vitaView.destroy();
+      vitaView = null;
+    }
     if (!proView) {
       proView = createProfessionalView();
       proView.mount(proContainer);
@@ -31,6 +38,10 @@ window.addEventListener('viewchange', (e) => {
     if (proView) {
       proView.destroy();
       proView = null;
+    }
+    if (!vitaView) {
+      vitaView = createVitaView();
+      vitaView.mount(vitaContainer);
     }
   }
 });

@@ -235,7 +235,7 @@ supported (Chrome 111+) with manual CSS fallback for other browsers.
 - [x] **Phase 1** — Environment, Tooling, Build Config, Global CSS, Agent Memory Setup
 - [x] **Phase 2** — Global State & Gateways: ViewState bridge, `delay.ts` utility, `ViewTransition.ts` (View Transition API + manual CSS fallback + reduced-motion), `ViewToggle` persistent component, `main.ts` integration
 - [x] **Phase 3** — Professional View components (Nav, Hero, TechMarquee, FeaturedProject, ProjectGrid, Contact, Footer)
-- [ ] **Phase 4** — Vita View components (Background, BubbleGrid, LiveArea, PageIndicator, AudioToggle)
+- [x] **Phase 4** — Vita View components (Background, BubbleGrid, LiveArea, PageIndicator, AudioToggle)
 - [ ] **Phase 5** — Audio integration (Howler sprite setup, AudioToggle component)
 - [ ] **Phase 6** — Accessibility audit (WCAG AA, focus management, ARIA, keyboard navigation)
 - [ ] **Phase 7** — Performance optimization (Critical CSS inline, image pipeline, CWV audit)

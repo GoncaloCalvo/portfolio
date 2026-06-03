@@ -1,0 +1,34 @@
+@layer components {
+  .vita-scroll-container {
+    position: relative;
+    z-index: 1;
+    height: 100vh;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .vita-scroll-container::-webkit-scrollbar {
+    display: none;
+  }
+
+  .vita-screen-page {
+    height: 100vh;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .vita-bubble-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: clamp(20px, 4vw, 48px);
+    padding: clamp(32px, 6vw, 80px);
+    align-content: center;
+    transition: opacity 200ms ease-out;
+  }
+}

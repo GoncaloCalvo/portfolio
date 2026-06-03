@@ -1,0 +1,33 @@
+@layer components {
+  .vita-page-indicator {
+    position: fixed;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    z-index: 100;
+  }
+
+  .vita-page-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.35);
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    transition: background 300ms ease, transform 300ms ease;
+  }
+
+  .vita-page-dot:focus-visible {
+    outline: 2px solid var(--color-vita-cerulean, #00BFFF);
+    outline-offset: 3px;
+  }
+
+  .vita-page-dot[data-active="true"] {
+    background: rgba(0, 191, 255, 0.9);
+    transform: scale(1.5);
+  }
+}

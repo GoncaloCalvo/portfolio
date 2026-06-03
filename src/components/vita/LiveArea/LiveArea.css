@@ -1,0 +1,314 @@
+@layer components {
+  .vita-livearea-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(16px, 4vw, 40px);
+  }
+
+  .vita-livearea-overlay[hidden] {
+    display: none;
+  }
+
+  /* ── Backdrop ── */
+  .vita-livearea-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.72);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+
+  /* ── Panel container ── */
+  .vita-livearea-panel {
+    position: relative;
+    z-index: 1;
+    width: min(var(--livearea-max-width, 960px), 95vw);
+    max-height: 90vh;
+    overflow-y: auto;
+    border-radius: var(--livearea-border-radius, 4px);
+    background: var(--color-vita-bg-panel, rgba(8, 14, 30, 0.96));
+    border: 1px solid var(--color-vita-border-livearea, rgba(0, 191, 255, 0.25));
+    box-shadow: var(--shadow-livearea-panel,
+      0 0 0 1px rgba(0, 191, 255, 0.1),
+      0 32px 80px rgba(0, 0, 0, 0.8),
+      inset 0 1px 0 rgba(255, 255, 255, 0.06)
+    );
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 191, 255, 0.4) transparent;
+  }
+
+  .vita-livearea-panel::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  .vita-livearea-panel::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .vita-livearea-panel::-webkit-scrollbar-thumb {
+    background: rgba(0, 191, 255, 0.4);
+    border-radius: 2px;
+  }
+
+  /* ── Banner ── */
+  .vita-livearea-banner {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 960 / 200;
+    overflow: hidden;
+    border-radius: var(--livearea-border-radius, 4px) var(--livearea-border-radius, 4px) 0 0;
+  }
+
+  .vita-livearea-banner__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+    max-width: none;
+  }
+
+  .vita-livearea-banner__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.7) 0%,
+      rgba(0, 0, 0, 0.2) 60%,
+      transparent 100%
+    );
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 20px 28px;
+  }
+
+  .vita-livearea-banner__title {
+    font-family: var(--font-vita-ui, 'Rajdhani', sans-serif);
+    font-weight: 600;
+    font-size: clamp(20px, 3vw, 32px);
+    color: #ffffff;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+    margin: 0;
+    line-height: 1.2;
+  }
+
+  .vita-livearea-banner__subtitle {
+    font-family: var(--font-vita-body, 'DM Sans', sans-serif);
+    font-size: clamp(12px, 1.5vw, 14px);
+    color: rgba(255, 255, 255, 0.75);
+    margin: 4px 0 0;
+    line-height: 1.4;
+  }
+
+  /* ── START Zone ── */
+  .vita-livearea-startzone {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 20px 28px;
+    border-bottom: 1px solid var(--color-vita-border-panel, rgba(0, 191, 255, 0.1));
+  }
+
+  .vita-livearea-start-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 40px;
+    background: linear-gradient(
+      135deg,
+      var(--color-vita-blue, rgba(0, 140, 230, 0.9)) 0%,
+      var(--color-vita-blue-deep, rgba(0, 80, 180, 0.9)) 100%
+    );
+    border: 1px solid rgba(0, 191, 255, 0.6);
+    border-radius: 3px;
+    font-family: var(--font-vita-ui, 'Rajdhani', sans-serif);
+    font-weight: 700;
+    font-size: 22px;
+    letter-spacing: 0.2em;
+    color: #ffffff;
+    text-decoration: none;
+    text-transform: uppercase;
+    cursor: pointer;
+    box-shadow: var(--shadow-start-btn,
+      0 0 20px rgba(0, 191, 255, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2)
+    );
+    transition:
+      box-shadow 150ms ease,
+      transform 150ms ease;
+  }
+
+  .vita-livearea-start-btn:hover {
+    box-shadow: var(--shadow-start-btn-hover,
+      0 0 32px rgba(0, 191, 255, 0.6),
+      0 0 8px rgba(0, 191, 255, 0.8),
+      inset 0 1px 0 rgba(255, 255, 255, 0.25)
+    );
+    transform: translateY(-1px);
+  }
+
+  .vita-livearea-start-btn:focus-visible {
+    outline: 2px solid var(--color-vita-cerulean, #00BFFF);
+    outline-offset: 3px;
+  }
+
+  .vita-start-btn__icon {
+    font-size: 16px;
+  }
+
+  .vita-livearea-code-link {
+    font-family: var(--font-vita-ui, 'Rajdhani', sans-serif);
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    color: var(--color-vita-text-header, rgba(0, 191, 255, 0.7));
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 150ms ease, color 150ms ease;
+  }
+
+  .vita-livearea-code-link:hover {
+    color: var(--color-vita-cerulean, #00BFFF);
+    border-bottom-color: var(--color-vita-cerulean, #00BFFF);
+  }
+
+  .vita-livearea-code-link:focus-visible {
+    outline: 2px solid var(--color-vita-cerulean, #00BFFF);
+    outline-offset: 3px;
+  }
+
+  /* ── Panels grid ── */
+  .vita-livearea-panels {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 1px;
+    background: var(--color-vita-border-panel, rgba(0, 191, 255, 0.1));
+    padding: 1px;
+  }
+
+  .vita-livearea-panel-block {
+    background: var(--color-vita-bg-panel, rgba(8, 14, 30, 0.96));
+    padding: 20px 24px;
+  }
+
+  .vita-livearea-panel-block--description {
+    grid-column: 1 / -1;
+  }
+
+  .vita-livearea-panel-block__title {
+    font-family: var(--font-vita-ui, 'Rajdhani', sans-serif);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-vita-text-header, rgba(0, 191, 255, 0.7));
+    margin: 0 0 12px;
+  }
+
+  .vita-livearea-panel-block__content {
+    font-family: var(--font-vita-body, 'DM Sans', sans-serif);
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--color-vita-text-secondary, rgba(255, 255, 255, 0.7));
+  }
+
+  /* ── Challenges ── */
+  .vita-livearea-challenge-item {
+    margin-bottom: 16px;
+  }
+
+  .vita-livearea-challenge-item:last-child {
+    margin-bottom: 0;
+  }
+
+  .vita-livearea-challenge-item__title {
+    font-family: var(--font-vita-ui, 'Rajdhani', sans-serif);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    color: var(--color-vita-text-primary, rgba(255, 255, 255, 0.9));
+    margin: 0 0 6px;
+  }
+
+  .vita-livearea-challenge-item__desc {
+    font-family: var(--font-vita-body, 'DM Sans', sans-serif);
+    font-size: 13px;
+    line-height: 1.65;
+    color: var(--color-vita-text-secondary, rgba(255, 255, 255, 0.7));
+    margin: 0;
+  }
+
+  /* ── Stack chips ── */
+  .vita-livearea-stack-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .vita-livearea-stack-chip {
+    font-family: var(--font-vita-ui, 'Rajdhani', sans-serif);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    color: var(--color-vita-cerulean, #00BFFF);
+    background: rgba(0, 191, 255, 0.08);
+    border: 1px solid rgba(0, 191, 255, 0.25);
+    border-radius: 3px;
+    padding: 4px 10px;
+  }
+
+  /* ── Close button ── */
+  .vita-livearea-close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    z-index: 10;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition:
+      background 150ms ease,
+      border-color 150ms ease,
+      color 150ms ease;
+  }
+
+  .vita-livearea-close:hover {
+    background: rgba(255, 50, 50, 0.3);
+    border-color: rgba(255, 100, 100, 0.5);
+    color: #ffffff;
+  }
+
+  .vita-livearea-close:focus-visible {
+    outline: 2px solid var(--color-vita-cerulean, #00BFFF);
+    outline-offset: 3px;
+  }
+
+  /* ── Mobile: stack panels to single column ── */
+  @media (max-width: 600px) {
+    .vita-livearea-panels {
+      grid-template-columns: 1fr;
+    }
+
+    .vita-livearea-panel-block--description {
+      grid-column: 1;
+    }
+
+    .vita-livearea-startzone {
+      flex-wrap: wrap;
+    }
+  }
+}
