@@ -31,22 +31,42 @@
   <link rel="manifest" href="/site.webmanifest" />
 
   <!-- Font preconnects -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-  <!-- Priority preload: Instrument Serif is the critical display font (LCP element) -->
+  <!-- Critical font preload: Instrument Serif drives the hero h1 (LCP element).
+       URL matches the stylesheet below so the browser reuses the same fetched resource. -->
   <link
     rel="preload"
     as="style"
     href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap"
+    crossorigin
+    fetchpriority="high"
   />
-
-  <!-- All typefaces in a single request to minimise round trips.
-       Subsetted to Latin (&subset=latin) via Google Fonts default behaviour. -->
+  <!-- Instrument Serif: render-blocking by design — it IS the LCP element. -->
   <link
     rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Geist:wght@300;400;500;600&family=Rajdhani:wght@400;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;1,9..40,400&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap"
+    crossorigin
   />
+
+  <!-- Non-critical typefaces: loaded via print-media trick so they never block rendering.
+       The browser loads the CSS in the background, then applies it when done.
+       noscript fallback ensures fonts apply in no-JS environments. -->
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Geist:wght@300;400;500;600&family=Rajdhani:wght@400;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;1,9..40,400&display=swap"
+    media="print"
+    onload="this.media='all'"
+    crossorigin
+  />
+  <noscript>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Geist:wght@300;400;500;600&family=Rajdhani:wght@400;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;1,9..40,400&display=swap"
+      crossorigin
+    />
+  </noscript>
 </head>
 <body>
   <!-- Skip link — first focusable element per WCAG 2.4.1.

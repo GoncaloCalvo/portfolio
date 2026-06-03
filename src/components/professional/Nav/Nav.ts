@@ -20,6 +20,7 @@ export function createNav(): ComponentInstance {
   return {
     mount(container: HTMLElement): void {
       navEl = document.createElement('nav');
+      navEl.id = 'pro-nav';
       navEl.className = 'pro-nav';
       navEl.setAttribute('aria-label', 'Primary navigation');
 

@@ -6,6 +6,7 @@
     height: var(--nav-height);
     display: flex;
     align-items: center;
+    justify-content: space-between;
     padding: 0 var(--content-padding-x);
     gap: 40px;
     /* Transition only the properties that change on scroll */

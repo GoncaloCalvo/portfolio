@@ -23,7 +23,8 @@ export function createFeaturedProject(project: Project): ComponentInstance {
             alt="${project.assets.imageAlt}"
             width="1200"
             height="800"
-            loading="eager"
+            loading="lazy"
+            decoding="async"
           />`
         : `<div class="pro-featured-card__image-placeholder" aria-hidden="true">Image coming soon</div>`;
 

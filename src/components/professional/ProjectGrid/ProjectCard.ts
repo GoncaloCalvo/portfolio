@@ -25,6 +25,7 @@ export function createProjectCard(project: Project): HTMLElement {
         width="1200"
         height="800"
         loading="lazy"
+        decoding="async"
       />`
     : `<div class="pro-card__image-placeholder" aria-hidden="true">Image coming soon</div>`;
 

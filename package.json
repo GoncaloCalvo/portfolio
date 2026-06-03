@@ -7,14 +7,18 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "optimize:images": "tsx scripts/optimize-images.ts"
   },
   "dependencies": {
     "howler": "^2.2.4"
   },
   "devDependencies": {
     "@types/howler": "^2.2.11",
+    "@types/sharp": "^0.31.1",
     "lightningcss": "^1.24.1",
+    "sharp": "^0.34.5",
+    "tsx": "^4.22.4",
     "typescript": "^5.5.3",
     "vite": "^5.4.0"
   }

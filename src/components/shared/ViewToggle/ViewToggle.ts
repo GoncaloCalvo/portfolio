@@ -8,8 +8,9 @@ export interface ComponentInstance {
   destroy(): void;
 }
 
-// Inline SVGs avoid external icon dependencies while remaining crisp at any DPI.
-const VITA_ICON_SVG = `<svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><circle cx="7" cy="7" r="6" stroke="currentColor" stroke-width="1.5"/><path d="M5 5l4 4M9 5L5 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>`;
+// Four classic PlayStation controller symbols arranged in a 2×2 grid (△ ○ / □ ✕).
+// Inline SVG avoids icon-font dependencies and stays crisp at any DPI / pixel ratio.
+const VITA_ICON_SVG = `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><path d="M6 2.5L9.5 9.5H2.5L6 2.5Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round" stroke-linecap="round"/><circle cx="18" cy="6" r="3.5" stroke="currentColor" stroke-width="1.3"/><rect x="2.5" y="14.5" width="7" height="7" rx="0.75" stroke="currentColor" stroke-width="1.3"/><path d="M14.5 14.5L21.5 21.5M21.5 14.5L14.5 21.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>`;
 
 const PRO_ICON_SVG = `<svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><rect x="1" y="4.5" width="12" height="8.5" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M5 4.5V3a1 1 0 011-1h2a1 1 0 011 1v1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>`;
 
