@@ -17,11 +17,11 @@ export function createFooter(): ComponentInstance {
 
       footerEl.innerHTML = `
         <div class="pro-footer__inner">
-          <p class="pro-footer__copy">&copy; ${year} Your Name. All rights reserved.</p>
+          <p class="pro-footer__copy">&copy; ${year} Gonçalo Calvo. All rights reserved.</p>
           <ul class="pro-footer__social" role="list">
             <li role="listitem">
               <a
-                href="https://github.com/username"
+                href="https://github.com/GoncaloCalvo"
                 class="pro-footer__social-link"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -30,7 +30,7 @@ export function createFooter(): ComponentInstance {
             </li>
             <li role="listitem">
               <a
-                href="https://linkedin.com/in/username"
+                href="https://linkedin.com/in/goncalocalvo"
                 class="pro-footer__social-link"
                 target="_blank"
                 rel="noopener noreferrer"

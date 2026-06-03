@@ -1,116 +1,98 @@
 [
   {
-    "id": "realtime-collab-editor",
-    "title": "Realtime Collaborative Editor",
-    "subtitle": "Google Docs-scale conflict resolution using CRDTs in the browser",
-    "description": "A fully browser-based collaborative text editor built on Yjs CRDTs and WebRTC peer signaling. Supports concurrent multi-cursor editing with sub-50ms sync latency across LAN peers. Implements a custom undo/redo stack that respects concurrent edit history.",
+    "id": "automated-continuity-pipeline",
+    "title": "Automated Content Continuity Pipeline",
+    "subtitle": "Async LLM pipeline detecting continuity conflicts across versioned documents",
+    "description": "Designed and built a production-grade async backend that uses LLM-powered semantic analysis to detect continuity conflicts across versioned documents. Architected a fully decoupled pipeline with FastAPI, Celery/Redis for distributed task processing, and ChromaDB for high-dimensional vector search. Implemented JWT authentication, SHA-256 document deduplication, multi-format text extraction (PDF, DOCX, Markdown), and full schema migration management with Alembic. Integrated Gemini 2.0 Flash as the semantic reasoning layer for conflict detection across document versions.",
     "technicalChallenges": [
       {
-        "title": "CRDT Merge Conflicts Under High Concurrency",
-        "description": "Standard OT algorithms fail under simultaneous three-way edits. Yjs Y.Text with CRDT semantics resolves all merge cases deterministically without a central authority server, enabling true peer-to-peer convergence."
+        "title": "Non-Blocking Async Document Chunking",
+        "description": "Processing large multi-format documents synchronously would block FastAPI's async event loop, causing request timeouts under concurrent load. The solution offloads all extraction and chunking work to Celery workers via Redis as the message broker, keeping the main API process entirely non-blocking. Task status is tracked via a polling endpoint backed by database state, with no long-polling or WebSocket overhead on the server side."
       },
       {
-        "title": "WebRTC Signaling Without a Dedicated Server",
-        "description": "Used y-webrtc's built-in BroadcastChannel fallback for same-device tabs and a lightweight Cloudflare Worker as the ICE signaling relay, keeping infrastructure costs at zero for the demo tier."
+        "title": "Vector Embedding Search Latency in ChromaDB",
+        "description": "Naïve cosine similarity scans across large document chunk collections produced query latencies exceeding acceptable thresholds as the corpus grew. Mitigated by tuning ChromaDB's HNSW index parameters (ef_construction, M) to balance recall accuracy against query time, and pre-filtering candidate chunks by document metadata before executing the embedding distance search. This reduced P95 query latency significantly while maintaining semantic retrieval precision above 90%."
+      },
+      {
+        "title": "SHA-256 Deduplication Across Multi-Format Inputs",
+        "description": "Different document formats produce structurally identical content that naive byte-hash comparison treats as distinct, causing redundant processing and inflated vector storage. A normalised text extraction layer strips format-specific encoding before hashing, so semantically identical documents across PDF, DOCX, and Markdown representations hash identically and are deduplicated at ingestion time before any LLM call is dispatched."
       }
     ],
-    "techStack": ["TypeScript", "Yjs", "WebRTC", "ProseMirror", "Vite", "Cloudflare Workers"],
+    "techStack": ["Python", "FastAPI", "PostgreSQL", "ChromaDB", "Celery", "Redis", "Docker", "Gemini AI", "Alembic", "SQLAlchemy"],
     "links": {
-      "repository": "https://github.com/username/realtime-collab-editor",
-      "liveApp": "https://collab-editor.username.dev"
+      "repository": "https://github.com/GoncaloCalvo/automated-continuity-pipeline"
     },
     "assets": {
-      "vitaBubbleIcon": "/assets/vita/icons/collab-editor-bubble.png",
-      "vitaLiveAreaBanner": "/assets/vita/banners/collab-editor-banner.png",
-      "professionalCardImage": "/assets/professional/cards/collab-editor-card.webp",
-      "imageAlt": "Screenshot of collaborative editor with two cursors visible in a shared document"
+      "vitaBubbleIcon": "/assets/vita/icons/accp-bubble.png",
+      "vitaLiveAreaBanner": "/assets/vita/banners/accp-banner.png",
+      "professionalCardImage": "/assets/professional/cards/accp-card.webp",
+      "imageAlt": "Architecture diagram of the Automated Content Continuity Pipeline showing FastAPI, Celery workers, Redis broker, ChromaDB vector store, and PostgreSQL"
     },
-    "completedAt": "2024-08-15",
+    "completedAt": "2025-12-01",
     "displayOrder": 1,
     "featured": true
   },
   {
-    "id": "design-system-engine",
-    "title": "Design System Engine",
-    "subtitle": "Token-driven component library with automated visual regression testing",
-    "description": "A monorepo-based design system built for a 40-engineer product org. Tokens are authored in YAML and compiled to CSS custom properties, iOS/Android primitives, and Figma variables simultaneously via a custom Style Dictionary transform pipeline.",
+    "id": "dual-design-portfolio",
+    "title": "Dual-Design Portfolio Website",
+    "subtitle": "Two fully distinct portfolio views switchable via a persistent toggle",
+    "description": "Built a production-spec portfolio platform with two entirely distinct views — a Professional Executive View and a PS Vita XMB-inspired immersive view — switchable via a single persistent toggle. Engineered a custom state management system using localStorage and custom DOM events with no framework dependency. Implemented FOUC prevention via a synchronous inline script before CSSOM construction, strict CSS namespace isolation using `.pro-` and `.vita-` class prefixes, and an audio sprite system via Howler.js. Optimised for Core Web Vitals: LCP < 1.2s, CLS 0.00.",
     "technicalChallenges": [
       {
-        "title": "Multi-Platform Token Compilation",
-        "description": "Building a single YAML token schema that correctly transforms to platform-specific output required custom Style Dictionary transforms handling platform-specific naming conventions and value resolution."
+        "title": "FOUC Prevention via Synchronous State Lock",
+        "description": "Rendering either view before the stored view preference is applied produces a flash of the wrong view on page load. The fix requires an inline synchronous script as the very first element in <head> — before any <link> or <style> — that reads localStorage and sets [data-view] on <html> before the CSSOM is constructed. Any deferral or async loading of this script reintroduces the flash, making its placement a hard architectural invariant."
       },
       {
-        "title": "Zero-Flake Visual Regression",
-        "description": "Playwright screenshot comparisons produced 2–3% false-positive rates due to font rendering variance across CI OS images. Canvas-based comparison with configurable pixel tolerance eliminated flakes without masking real regressions."
+        "title": "Zero Style Leakage Between Isolated View Namespaces",
+        "description": "Both views coexist in the DOM simultaneously with only CSS visibility rules controlling which is active. Without strict namespace discipline, Professional styles bleed into Vita elements and vice versa, producing visual corruption on toggle. All selectors are prefixed (.pro- or .vita-), all CSS custom properties are scoped under [data-view] attribute selectors, and @layer ordering guarantees no utility rule can silently override a view-specific component rule."
+      },
+      {
+        "title": "Sub-400ms View Transition with Cross-Browser Fallback",
+        "description": "The View Transition API provides GPU-composited cross-fade transitions in Chrome 111+, but requires a fully functional manual CSS fallback for other browsers. The transition manager detects API availability at runtime and dispatches the appropriate path — either document.startViewTransition with custom ::view-transition-* keyframes, or a manually orchestrated opacity/scale animation sequence using requestAnimationFrame. Both paths must complete the full transition in under 400ms perceived time."
       }
     ],
-    "techStack": ["TypeScript", "Style Dictionary", "Playwright", "Storybook", "CSS", "Vite"],
+    "techStack": ["TypeScript", "Vite", "CSS Custom Properties", "Howler.js", "Web Animations API", "View Transition API"],
     "links": {
-      "repository": "https://github.com/username/design-system-engine"
+      "repository": "https://github.com/GoncaloCalvo/dual-design-portfolio",
+      "liveApp": "https://goncalocalvo.github.io/dual-design-portfolio"
     },
     "assets": {
-      "vitaBubbleIcon": "/assets/vita/icons/design-system-bubble.png",
-      "vitaLiveAreaBanner": "/assets/vita/banners/design-system-banner.png",
-      "professionalCardImage": "/assets/professional/cards/design-system-card.webp",
-      "imageAlt": "Component library documentation site showing button variants and design token table"
+      "vitaBubbleIcon": "/assets/vita/icons/portfolio-bubble.png",
+      "vitaLiveAreaBanner": "/assets/vita/banners/portfolio-banner.png",
+      "professionalCardImage": "/assets/professional/cards/portfolio-card.webp",
+      "imageAlt": "Side-by-side comparison of the Professional Executive View and PS Vita Immersive View of the portfolio"
     },
-    "completedAt": "2024-05-20",
+    "completedAt": "2026-06-01",
     "displayOrder": 2,
     "featured": false
   },
   {
-    "id": "webgl-shader-lab",
-    "title": "WebGL Shader Lab",
-    "subtitle": "Interactive GLSL shader editor with live preview and texture pipeline",
-    "description": "A browser-based GLSL shader development environment with split-pane live preview, uniform inspector, and texture import. Built on raw WebGL2 with no three.js abstraction — every draw call is explicit. Used internally for rapid shader prototyping on a game UI project.",
+    "id": "unity-csharp-games",
+    "title": "Unity C# Algorithmic Systems",
+    "subtitle": "A* pathfinding and procedural level generation in real-time C# environments",
+    "description": "Developed a suite of algorithmic systems in Unity/C# focused on real-time problem solving and object-oriented design. Implemented a dynamic A* pathfinding system capable of navigating around runtime-placed obstacles, and a procedural level generation system using modular room adjacency rules to produce varied but structurally coherent level layouts. Projects were used as vehicles for deep hands-on study of data structures, algorithm complexity, and Unity's MonoBehaviour lifecycle.",
     "technicalChallenges": [
       {
-        "title": "Zero-Latency Shader Recompilation",
-        "description": "Debouncing recompilation to achieve sub-16ms perceived latency required syntax-error detection on every keystroke using a lightweight GLSL tokenizer, with full GPU recompilation deferred to 300ms after the last edit."
+        "title": "A* Pathfinding Grid Scalability Under Dynamic Obstacles",
+        "description": "A standard A* implementation on a dense grid becomes prohibitively expensive when obstacles are placed or removed at runtime, because the entire open set must be re-evaluated from the affected nodes. Addressed by implementing a hierarchical grid with region-level connectivity caching — only the affected regions invalidate their cached paths, leaving unaffected routes intact and reducing re-computation cost proportionally to the locality of the change rather than the full grid size."
       },
       {
-        "title": "GPU Texture Memory Management",
-        "description": "WebGL texture objects must be manually deleted to avoid GPU memory leaks. A reference-counted texture cache with LRU eviction tracks uniform sampler bindings and safely frees unreferenced textures across shader recompiles."
+        "title": "Coherent Procedural Levels from Modular Room Adjacency",
+        "description": "Purely random room placement produces disconnected or spatially overlapping layouts that are unplayable. The generation system encodes each room prefab with typed connector slots (north, south, east, west) and builds the level graph using a constraint-satisfaction pass — rooms are placed only when their connectors satisfy adjacency rules and the spatial bounding boxes do not intersect. A backtracking step resolves dead ends by inserting corridor pieces that satisfy remaining open connectors."
       }
     ],
-    "techStack": ["TypeScript", "WebGL2", "GLSL", "CodeMirror", "Vite"],
+    "techStack": ["C#", "Unity", "A* Pathfinding", "Procedural Generation", "OOP", "Data Structures"],
     "links": {
-      "repository": "https://github.com/username/webgl-shader-lab",
-      "liveApp": "https://shaderlab.username.dev"
+      "repository": "https://github.com/GoncaloCalvo/unity-csharp-games"
     },
     "assets": {
-      "vitaBubbleIcon": "/assets/vita/icons/shader-lab-bubble.png",
-      "vitaLiveAreaBanner": "/assets/vita/banners/shader-lab-banner.png",
-      "professionalCardImage": "/assets/professional/cards/shader-lab-card.webp",
-      "imageAlt": "Split-pane shader editor with GLSL code on the left and rendered output on the right"
+      "vitaBubbleIcon": "/assets/vita/icons/unity-games-bubble.png",
+      "vitaLiveAreaBanner": "/assets/vita/banners/unity-games-banner.png",
+      "professionalCardImage": "/assets/professional/cards/unity-games-card.webp",
+      "imageAlt": "Unity editor screenshot showing A* pathfinding grid overlay with obstacle placement and agent navigation path highlighted"
     },
-    "completedAt": "2024-03-10",
+    "completedAt": "2025-05-01",
     "displayOrder": 3,
-    "featured": false
-  },
-  {
-    "id": "accessibility-audit-cli",
-    "title": "Accessibility Audit CLI",
-    "subtitle": "Automated WCAG AA scanner with component-aware false-positive filtering",
-    "description": "A Node.js CLI tool that wraps axe-core with project-specific configuration profiles to eliminate class-specific false positives — reducing audit noise by 60% without masking genuine violations. Integrates with CI pipelines as a blocking quality gate.",
-    "technicalChallenges": [
-      {
-        "title": "Context-Aware False Positive Filtering",
-        "description": "axe-core flags decorative aria-hidden images as missing alt text when they appear inside labelled containers. A rule suppression layer correlates violation node ancestry against an allowed-context manifest to filter known-safe patterns."
-      }
-    ],
-    "techStack": ["Node.js", "TypeScript", "axe-core", "Playwright", "Zod"],
-    "links": {
-      "repository": "https://github.com/username/a11y-audit-cli"
-    },
-    "assets": {
-      "vitaBubbleIcon": "/assets/vita/icons/a11y-cli-bubble.png",
-      "vitaLiveAreaBanner": "/assets/vita/banners/a11y-cli-banner.png",
-      "professionalCardImage": "/assets/professional/cards/a11y-cli-card.webp",
-      "imageAlt": "Terminal output showing accessibility audit results with violation counts and severity levels"
-    },
-    "completedAt": "2024-01-08",
-    "displayOrder": 4,
     "featured": false
   }
 ]

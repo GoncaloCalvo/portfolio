@@ -17,12 +17,13 @@ export function createHero(): ComponentInstance {
 
       section.innerHTML = `
         <div class="pro-hero__content">
-          <p class="pro-hero__role">Senior Frontend Engineer / Creative Technologist</p>
-          <h1 id="pro-hero-title" class="pro-hero__name">Your Name</h1>
+          <p class="pro-hero__role">Software Engineer / Creative Technologist</p>
+          <h1 id="pro-hero-title" class="pro-hero__name">Gonçalo Calvo</h1>
           <p class="pro-hero__pitch">
-            I architect browser-based interactive systems at the intersection of game UI and
-            production web tooling — where sub-16ms frame budgets and accessible,
-            maintainable code coexist.
+            I engineer async LLM pipelines and browser-based interactive systems at the
+            intersection of semantic vector search and high-fidelity UI recreation —
+            where production-grade Celery/ChromaDB architectures and sub-400ms view
+            transitions are held to the same standard of correctness.
           </p>
           <div class="pro-hero__cta">
             <a href="#pro-work" class="pro-hero__cta-primary">View My Work ↓</a>

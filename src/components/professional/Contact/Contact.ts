@@ -5,7 +5,7 @@ export interface ComponentInstance {
   destroy(): void;
 }
 
-const CONTACT_EMAIL = 'hello@yourname.dev';
+const CONTACT_EMAIL = 'goncalocalvo1976@gmail.com';
 
 export function createContact(): ComponentInstance {
   let section: HTMLElement | null = null;
