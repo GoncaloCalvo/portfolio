@@ -14,6 +14,12 @@ import { createVitaView } from './components/vita/VitaView';
 const app = document.getElementById('app')!;
 const proContainer = document.getElementById('view-professional')!;
 const vitaContainer = document.getElementById('view-vita')!;
+const skipLink = document.getElementById('skip-link') as HTMLAnchorElement | null;
+
+function syncSkipLink(mode: string): void {
+  if (!skipLink) return;
+  skipLink.href = mode === 'vita' ? '#vita-main-content' : '#main-content';
+}
 
 // ViewToggle is persistent — mounted once, never destroyed
 const viewToggle = createViewToggle();
@@ -24,6 +30,8 @@ let vitaView: ComponentInstance | null = null;
 
 window.addEventListener('viewchange', (e) => {
   const { mode } = (e as CustomEvent<{ mode: string }>).detail;
+
+  syncSkipLink(mode);
 
   if (mode === 'professional') {
     if (vitaView) {

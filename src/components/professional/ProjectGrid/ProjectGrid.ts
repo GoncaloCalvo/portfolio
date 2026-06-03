@@ -14,12 +14,13 @@ export function createProjectGrid(projects: Project[]): ComponentInstance {
     mount(container: HTMLElement): void {
       section = document.createElement('section');
       section.className = 'pro-grid-section';
+      section.setAttribute('aria-labelledby', 'pro-grid-heading');
 
       const heading = document.createElement('div');
       heading.className = 'pro-grid-section__heading';
       heading.innerHTML = `
         <p class="pro-grid-section__label">Selected Work</p>
-        <h2 class="pro-grid-section__title">More Projects</h2>
+        <h2 id="pro-grid-heading" class="pro-grid-section__title">More Projects</h2>
       `;
 
       const grid = document.createElement('div');

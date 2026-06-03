@@ -24,11 +24,21 @@ export function createVitaView(): ComponentInstance {
 
   let bubbleGrid: ReturnType<typeof createBubbleGrid> | null = null;
   let pageIndicator: ReturnType<typeof createPageIndicator> | null = null;
+  let mainEl: HTMLElement | null = null;
 
   return {
     mount(container: HTMLElement): void {
-      // Fixed background layer
+      // Fixed background layer (position: fixed — lives at container level)
       background.mount(container);
+
+      // <main> landmark wraps the primary interactive bubble grid content.
+      // Fixed-position overlays (pageIndicator, liveArea, audioToggle) stay at
+      // container level since they appear at fixed viewport positions.
+      mainEl = document.createElement('main');
+      mainEl.className = 'vita-main';
+      mainEl.id = 'vita-main-content';
+      mainEl.setAttribute('aria-label', 'Interactive project portfolio');
+      container.appendChild(mainEl);
 
       // Build bubble grid, which creates the scroll container + page DOM
       bubbleGrid = createBubbleGrid(catalog, {
@@ -38,9 +48,9 @@ export function createVitaView(): ComponentInstance {
           });
         },
       });
-      bubbleGrid.mount(container);
+      bubbleGrid.mount(mainEl);
 
-      // Page indicator wires to the now-existing scroll container
+      // Page indicator queries the scroll container from the full container tree
       const scrollEl = container.querySelector<HTMLElement>('.vita-scroll-container');
       const pageCount = Math.ceil(catalog.length / BUBBLES_PER_PAGE);
 
@@ -64,6 +74,8 @@ export function createVitaView(): ComponentInstance {
       pageIndicator = null;
       bubbleGrid?.destroy();
       bubbleGrid = null;
+      mainEl?.remove();
+      mainEl = null;
       background.destroy();
     },
   };

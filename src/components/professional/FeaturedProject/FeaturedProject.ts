@@ -14,6 +14,7 @@ export function createFeaturedProject(project: Project): ComponentInstance {
       section = document.createElement('section');
       section.className = 'pro-featured-section';
       section.id = 'pro-work';
+      section.setAttribute('aria-labelledby', 'pro-featured-title');
 
       const imageHtml = project.assets.professionalCardImage
         ? `<img
@@ -54,7 +55,7 @@ export function createFeaturedProject(project: Project): ComponentInstance {
           </div>
           <div class="pro-featured-card__meta">
             <span class="pro-featured-card__badge">Featured</span>
-            <h2 class="pro-featured-card__title">${project.title}</h2>
+            <h2 id="pro-featured-title" class="pro-featured-card__title">${project.title}</h2>
             <p class="pro-featured-card__subtitle">${project.subtitle}</p>
             <hr class="pro-featured-card__rule" />
             <p class="pro-featured-card__description">${project.description}</p>

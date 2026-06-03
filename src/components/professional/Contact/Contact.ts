@@ -15,10 +15,11 @@ export function createContact(): ComponentInstance {
       section = document.createElement('section');
       section.className = 'pro-contact-section';
       section.id = 'pro-contact';
+      section.setAttribute('aria-labelledby', 'pro-contact-heading');
 
       section.innerHTML = `
         <div class="pro-contact-section__inner">
-          <h2 class="pro-contact-section__heading">Let's Work Together</h2>
+          <h2 id="pro-contact-heading" class="pro-contact-section__heading">Let's Work Together</h2>
           <p class="pro-contact-section__directive">
             Available for contract engagements, staff roles, and creative collaborations.
           </p>

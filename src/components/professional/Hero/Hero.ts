@@ -13,11 +13,12 @@ export function createHero(): ComponentInstance {
       section = document.createElement('section');
       section.className = 'pro-hero';
       section.id = 'pro-about';
+      section.setAttribute('aria-labelledby', 'pro-hero-title');
 
       section.innerHTML = `
         <div class="pro-hero__content">
           <p class="pro-hero__role">Senior Frontend Engineer / Creative Technologist</p>
-          <h1 class="pro-hero__name">Your Name</h1>
+          <h1 id="pro-hero-title" class="pro-hero__name">Your Name</h1>
           <p class="pro-hero__pitch">
             I architect browser-based interactive systems at the intersection of game UI and
             production web tooling — where sub-16ms frame budgets and accessible,

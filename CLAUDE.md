@@ -237,6 +237,6 @@ supported (Chrome 111+) with manual CSS fallback for other browsers.
 - [x] **Phase 3** — Professional View components (Nav, Hero, TechMarquee, FeaturedProject, ProjectGrid, Contact, Footer)
 - [x] **Phase 4** — Vita View components (Background, BubbleGrid, LiveArea, PageIndicator, AudioToggle)
 - [x] **Phase 5** — Audio integration (Howler sprite setup, per-sprite volumes, audio triggers on all Vita + ViewToggle interactions)
-- [ ] **Phase 6** — Accessibility audit (WCAG AA, focus management, ARIA, keyboard navigation)
+- [x] **Phase 6** — Accessibility audit (WCAG AA, focus management, ARIA, keyboard navigation)
 - [ ] **Phase 7** — Performance optimization (Critical CSS inline, image pipeline, CWV audit)
 - [ ] **Phase 8** — Deployment configuration (GitHub Pages / Vercel, `base` path, CI)

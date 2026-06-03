@@ -96,7 +96,7 @@
     display: block;
   }
 
-  /* Skip link — visible only on :focus per WCAG 2.4.1 */
+  /* Skip link — visible only on keyboard focus per WCAG 2.4.1 */
   .skip-link {
     position: absolute;
     top: -100%;
@@ -111,11 +111,20 @@
     transition: top 200ms ease;
   }
 
+  /* :focus (not :focus-visible) is intentional here — skip links must always
+     reveal themselves when focused, regardless of input method, since the
+     visible-position change IS the meaningful focus indicator for this element. */
   .skip-link:focus {
     top: 0;
   }
 
-  /* Focus-visible baseline — each component overrides with view-appropriate colour */
+  .skip-link:focus-visible {
+    outline: 2px solid #f8f7f4;
+    outline-offset: 3px;
+  }
+
+  /* Focus-visible baseline — components override with their view-appropriate accent colour.
+     Using currentColor as the fallback keeps it visible against any background. */
   :focus-visible {
     outline: 2px solid currentColor;
     outline-offset: 3px;

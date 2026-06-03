@@ -44,7 +44,7 @@ export function createBubble(
       el.setAttribute('role', 'listitem');
       el.setAttribute('data-project-id', project.id);
       el.setAttribute('tabindex', '0');
-      el.setAttribute('aria-label', `${project.title} — press Enter to view details`);
+      el.setAttribute('aria-label', `${project.title} — press Enter or Space to view details`);
       el.style.setProperty('--bubble-float-duration', `${duration.toFixed(2)}s`);
       el.style.setProperty('--bubble-float-delay', `${delay.toFixed(2)}s`);
       el.style.setProperty('--bubble-float-amplitude', `${amplitude.toFixed(1)}px`);

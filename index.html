@@ -49,8 +49,9 @@
   />
 </head>
 <body>
-  <!-- Skip link — first focusable element per WCAG 2.4.1 -->
-  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <!-- Skip link — first focusable element per WCAG 2.4.1.
+       The href is updated at runtime by main.ts to target whichever view is active. -->
+  <a href="#main-content" class="skip-link" id="skip-link">Skip to main content</a>
 
   <div id="app">
 

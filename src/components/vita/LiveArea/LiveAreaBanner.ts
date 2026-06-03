@@ -16,7 +16,9 @@ export function createLiveAreaBanner(): BannerInstance {
     mount(container: HTMLElement): void {
       bannerEl = document.createElement('div');
       bannerEl.className = 'vita-livearea-banner';
-      bannerEl.setAttribute('aria-hidden', 'true');
+      // No aria-hidden here — the h2 title inside (id="livearea-title") is referenced
+      // by aria-labelledby on the dialog overlay. Hidden elements cannot be used as
+      // accessible names, so the banner must remain in the accessibility tree.
 
       imgEl = document.createElement('img');
       imgEl.className = 'vita-livearea-banner__image';

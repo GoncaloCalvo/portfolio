@@ -52,10 +52,12 @@ export function createNav(): ComponentInstance {
             );
             if (!link) continue;
             if (entry.isIntersecting) {
-              navEl?.querySelectorAll('.pro-nav__link--active').forEach(el =>
-                el.classList.remove('pro-nav__link--active')
-              );
+              navEl?.querySelectorAll('.pro-nav__link--active').forEach(el => {
+                el.classList.remove('pro-nav__link--active');
+                el.removeAttribute('aria-current');
+              });
               link.classList.add('pro-nav__link--active');
+              link.setAttribute('aria-current', 'page');
             }
           }
         },
