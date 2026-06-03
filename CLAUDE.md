@@ -30,7 +30,7 @@ persistent toggle:
 | Styling | Plain CSS (Layers + Custom Properties) | — |
 | Audio | Howler.js | 2.x |
 | Fonts | Google Fonts (Instrument Serif, DM Mono, Geist, Rajdhani, DM Sans) | — |
-| Deployment | GitHub Pages or Vercel | — |
+| Deployment | GitHub Pages (Actions CI/CD) | — |
 
 **Explicitly rejected:** React, Vue, Svelte, Next.js, jQuery, Redux, any state management lib,
 CSS-in-JS, Webpack, CRA.
@@ -239,4 +239,4 @@ supported (Chrome 111+) with manual CSS fallback for other browsers.
 - [x] **Phase 5** — Audio integration (Howler sprite setup, per-sprite volumes, audio triggers on all Vita + ViewToggle interactions)
 - [x] **Phase 6** — Accessibility audit (WCAG AA, focus management, ARIA, keyboard navigation)
 - [x] **Phase 7** — Performance optimization (image pipeline, font LCP split, CLS-safe img markup, bundle verification)
-- [ ] **Phase 8** — Deployment configuration (GitHub Pages / Vercel, `base` path, CI)
+- [x] **Phase 8** — Deployment configuration (GitHub Pages CI/CD via `.github/workflows/deploy.yml`, `VITE_BASE_PATH=/dual-design-portfolio/`, `upload-pages-artifact@v3` + `deploy-pages@v4`)
