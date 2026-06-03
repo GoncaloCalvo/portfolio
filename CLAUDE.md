@@ -226,7 +226,7 @@ supported (Chrome 111+) with manual CSS fallback for other browsers.
 - `assets/` — Source assets (unoptimized). Processed by scripts in `scripts/` using sharp (images) and ffmpeg (audio).
 - `public/assets/` — Production-ready static assets, accessible at `/assets/` URL path.
 - `scripts/optimize-images.ts` — sharp-based WebP conversion + resize (to be implemented Phase 7).
-- `scripts/generate-audio-sprite.ts` — ffmpeg-based sprite generation (to be implemented Phase 5).
+- `scripts/generate-audio-sprite.ts` — ffmpeg-based sprite generation script (implemented Phase 5).
 
 ---
 
@@ -236,7 +236,7 @@ supported (Chrome 111+) with manual CSS fallback for other browsers.
 - [x] **Phase 2** — Global State & Gateways: ViewState bridge, `delay.ts` utility, `ViewTransition.ts` (View Transition API + manual CSS fallback + reduced-motion), `ViewToggle` persistent component, `main.ts` integration
 - [x] **Phase 3** — Professional View components (Nav, Hero, TechMarquee, FeaturedProject, ProjectGrid, Contact, Footer)
 - [x] **Phase 4** — Vita View components (Background, BubbleGrid, LiveArea, PageIndicator, AudioToggle)
-- [ ] **Phase 5** — Audio integration (Howler sprite setup, AudioToggle component)
+- [x] **Phase 5** — Audio integration (Howler sprite setup, per-sprite volumes, audio triggers on all Vita + ViewToggle interactions)
 - [ ] **Phase 6** — Accessibility audit (WCAG AA, focus management, ARIA, keyboard navigation)
 - [ ] **Phase 7** — Performance optimization (Critical CSS inline, image pipeline, CWV audit)
 - [ ] **Phase 8** — Deployment configuration (GitHub Pages / Vercel, `base` path, CI)

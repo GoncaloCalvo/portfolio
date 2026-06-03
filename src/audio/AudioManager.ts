@@ -20,6 +20,16 @@ const SPRITE_MAP: Record<SoundId, [number, number]> = {
   viewToggle:    [1400, 300],
 };
 
+// Per-sprite volume levels as specified in the design doc.
+const VOLUME_MAP: Record<SoundId, number> = {
+  bubbleHover:   0.25,
+  bubbleClick:   0.40,
+  liveareaOpen:  0.35,
+  liveareaClose: 0.30,
+  startButton:   0.45,
+  viewToggle:    0.40,
+};
+
 class AudioManager {
   private howl: Howl | null = null;
   private muted: boolean;
@@ -44,7 +54,9 @@ class AudioManager {
   play(soundId: SoundId): void {
     if (!this.initialized) this.init();
     if (this.muted || !this.howl) return;
-    this.howl.play(soundId);
+    const instanceId = this.howl.play(soundId);
+    // Apply per-sprite volume after triggering so volume targets the specific instance.
+    this.howl.volume(VOLUME_MAP[soundId], instanceId);
   }
 
   toggleMute(): boolean {

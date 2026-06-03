@@ -5,6 +5,7 @@ import { createLiveAreaStartZone } from './LiveAreaStartZone';
 import { createLiveAreaPanels } from './LiveAreaPanels';
 import { createFocusTrap } from '../../../utils/focusTrap';
 import { delay } from '../../../utils/delay';
+import { audioManager } from '../../../state/audioState';
 
 export interface LiveAreaInstance {
   mount(container: HTMLElement): void;
@@ -39,6 +40,7 @@ export function createLiveArea(): LiveAreaInstance {
     isOpen = false;
     isAnimating = true;
 
+    audioManager.play('liveareaClose');
     focusTrap?.deactivate();
     if (escHandler) document.removeEventListener('keydown', escHandler);
 
@@ -140,6 +142,8 @@ export function createLiveArea(): LiveAreaInstance {
       isOpen = false;
       originBubble = bubble;
       dimCallback = onDim;
+
+      audioManager.play('liveareaOpen');
 
       banner.update(project);
       startZone.update(project);

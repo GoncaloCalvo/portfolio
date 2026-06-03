@@ -1,5 +1,6 @@
 import './Bubble.css';
 import type { Project } from '../../../types/project';
+import { audioManager } from '../../../state/audioState';
 
 export interface ComponentInstance {
   mount(container: HTMLElement): void;
@@ -31,6 +32,8 @@ export function createBubble(
   let el: HTMLElement | null = null;
   let clickHandler: (() => void) | null = null;
   let keyHandler: ((e: KeyboardEvent) => void) | null = null;
+  let hoverHandler: (() => void) | null = null;
+  let focusHandler: (() => void) | null = null;
 
   return {
     mount(container: HTMLElement): void {
@@ -60,16 +63,23 @@ export function createBubble(
         <span class="vita-bubble__label">${project.title}</span>
       `;
 
+      hoverHandler = () => audioManager.play('bubbleHover');
+      focusHandler = () => audioManager.play('bubbleHover');
+
       clickHandler = () => {
+        audioManager.play('bubbleClick');
         if (el) callbacks.onClick(project, el);
       };
       keyHandler = (e: KeyboardEvent) => {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
+          audioManager.play('bubbleClick');
           if (el) callbacks.onClick(project, el);
         }
       };
 
+      el.addEventListener('pointerenter', hoverHandler);
+      el.addEventListener('focus', focusHandler);
       el.addEventListener('click', clickHandler);
       el.addEventListener('keydown', keyHandler);
       container.appendChild(el);
@@ -77,11 +87,15 @@ export function createBubble(
 
     destroy(): void {
       if (el) {
+        if (hoverHandler) el.removeEventListener('pointerenter', hoverHandler);
+        if (focusHandler) el.removeEventListener('focus', focusHandler);
         if (clickHandler) el.removeEventListener('click', clickHandler);
         if (keyHandler) el.removeEventListener('keydown', keyHandler);
         el.remove();
         el = null;
       }
+      hoverHandler = null;
+      focusHandler = null;
       clickHandler = null;
       keyHandler = null;
     },

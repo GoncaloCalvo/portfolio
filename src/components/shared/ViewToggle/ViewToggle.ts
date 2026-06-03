@@ -1,6 +1,7 @@
 import './ViewToggle.css';
 import { ViewState, ViewMode } from '../../../state/viewState';
 import { performTransition } from '../../../transitions/ViewTransition';
+import { audioManager } from '../../../state/audioState';
 
 export interface ComponentInstance {
   mount(container: HTMLElement): void;
@@ -43,6 +44,8 @@ export function createViewToggle(): ComponentInstance {
 
     const current = ViewState.get();
     const next: ViewMode = current === 'professional' ? 'vita' : 'professional';
+
+    audioManager.play('viewToggle');
 
     isTransitioning = true;
     btn.classList.add('is-transitioning');
