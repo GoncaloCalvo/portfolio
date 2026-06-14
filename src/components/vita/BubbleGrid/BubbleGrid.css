@@ -25,7 +25,8 @@
 
   .vita-bubble-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    grid-template-columns: repeat(auto-fit, 130px);
+    justify-content: center;
     gap: clamp(20px, 4vw, 48px);
     padding: clamp(32px, 6vw, 80px);
     align-content: center;
