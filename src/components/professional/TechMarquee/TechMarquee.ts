@@ -1,10 +1,6 @@
 import './TechMarquee.css';
 import { Project } from '../../../types/project';
-
-export interface ComponentInstance {
-  mount(container: HTMLElement): void;
-  destroy(): void;
-}
+import type { ComponentInstance } from '../../../types/component';
 
 const EXTRA_TECHS = [
   'TypeScript', 'Vite', 'CSS Layers', 'WebGL', 'GSAP', 'Node.js',

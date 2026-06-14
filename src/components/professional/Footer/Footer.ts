@@ -1,9 +1,5 @@
 import './Footer.css';
-
-export interface ComponentInstance {
-  mount(container: HTMLElement): void;
-  destroy(): void;
-}
+import type { ComponentInstance } from '../../../types/component';
 
 export function createFooter(): ComponentInstance {
   let footerEl: HTMLElement | null = null;

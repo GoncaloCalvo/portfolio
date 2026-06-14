@@ -5,10 +5,8 @@ import './styles/vita/variables.css';
 
 import { ViewState, type ViewMode } from './state/viewState';
 import { createViewToggle } from './components/shared/ViewToggle/ViewToggle';
-import {
-  createProfessionalView,
-  type ComponentInstance,
-} from './components/professional/ProfessionalView';
+import type { ComponentInstance } from './types/component';
+import { createProfessionalView } from './components/professional/ProfessionalView';
 import { createVitaView } from './components/vita/VitaView';
 
 const app = document.getElementById('app')!;

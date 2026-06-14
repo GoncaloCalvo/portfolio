@@ -1,9 +1,5 @@
 import './VitaBackground.css';
-
-export interface ComponentInstance {
-  mount(container: HTMLElement): void;
-  destroy(): void;
-}
+import type { ComponentInstance } from '../../../types/component';
 
 export function createVitaBackground(): ComponentInstance {
   let el: HTMLDivElement | null = null;

@@ -1,10 +1,7 @@
 import './FeaturedProject.css';
 import { Project } from '../../../types/project';
-
-export interface ComponentInstance {
-  mount(container: HTMLElement): void;
-  destroy(): void;
-}
+import type { ComponentInstance } from '../../../types/component';
+import { renderMarkdown } from '../../../utils/markdown';
 
 export function createFeaturedProject(project: Project): ComponentInstance {
   let section: HTMLElement | null = null;
@@ -59,7 +56,7 @@ export function createFeaturedProject(project: Project): ComponentInstance {
             <h2 id="pro-featured-title" class="pro-featured-card__title">${project.title}</h2>
             <p class="pro-featured-card__subtitle">${project.subtitle}</p>
             <hr class="pro-featured-card__rule" />
-            <p class="pro-featured-card__description">${project.description}</p>
+            <div class="pro-featured-card__description">${renderMarkdown(project.description)}</div>
             <ul class="pro-featured-card__tech">${techChips}</ul>
             <div class="pro-featured-card__links">
               ${repoLink}

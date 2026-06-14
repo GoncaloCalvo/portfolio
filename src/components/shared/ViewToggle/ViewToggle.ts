@@ -2,11 +2,7 @@ import './ViewToggle.css';
 import { ViewState, ViewMode } from '../../../state/viewState';
 import { performTransition } from '../../../transitions/ViewTransition';
 import { audioManager } from '../../../state/audioState';
-
-export interface ComponentInstance {
-  mount(container: HTMLElement): void;
-  destroy(): void;
-}
+import type { ComponentInstance } from '../../../types/component';
 
 // Four classic PlayStation controller symbols arranged in a 2×2 grid (△ ○ / □ ✕).
 // Inline SVG avoids icon-font dependencies and stays crisp at any DPI / pixel ratio.

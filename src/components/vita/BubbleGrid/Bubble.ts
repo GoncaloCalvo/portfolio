@@ -1,10 +1,9 @@
 import './Bubble.css';
 import type { Project } from '../../../types/project';
 import { audioManager } from '../../../state/audioState';
+import type { ComponentInstance } from '../../../types/component';
 
-export interface ComponentInstance {
-  mount(container: HTMLElement): void;
-  destroy(): void;
+export interface BubbleInstance extends ComponentInstance {
   getElement(): HTMLElement | null;
 }
 
@@ -28,7 +27,7 @@ export function createBubble(
   project: Project,
   index: number,
   callbacks: BubbleCallbacks
-): ComponentInstance {
+): BubbleInstance {
   let el: HTMLElement | null = null;
   let clickHandler: (() => void) | null = null;
   let keyHandler: ((e: KeyboardEvent) => void) | null = null;

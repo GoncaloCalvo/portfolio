@@ -1,9 +1,5 @@
 import './Nav.css';
-
-export interface ComponentInstance {
-  mount(container: HTMLElement): void;
-  destroy(): void;
-}
+import type { ComponentInstance } from '../../../types/component';
 
 const SECTION_IDS = ['pro-about', 'pro-work', 'pro-contact'] as const;
 

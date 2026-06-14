@@ -1,9 +1,5 @@
 import './Hero.css';
-
-export interface ComponentInstance {
-  mount(container: HTMLElement): void;
-  destroy(): void;
-}
+import type { ComponentInstance } from '../../../types/component';
 
 export function createHero(): ComponentInstance {
   let section: HTMLElement | null = null;

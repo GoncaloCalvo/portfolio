@@ -1,9 +1,5 @@
 import './Contact.css';
-
-export interface ComponentInstance {
-  mount(container: HTMLElement): void;
-  destroy(): void;
-}
+import type { ComponentInstance } from '../../../types/component';
 
 const CONTACT_EMAIL = 'goncalocalvo1976@gmail.com';
 

@@ -1,11 +1,10 @@
 import './BubbleGrid.css';
 import type { Project, ProjectCatalog } from '../../../types/project';
 import { createBubble } from './Bubble';
-import type { ComponentInstance as BubbleInstance } from './Bubble';
+import type { BubbleInstance } from './Bubble';
+import type { ComponentInstance } from '../../../types/component';
 
-export interface ComponentInstance {
-  mount(container: HTMLElement): void;
-  destroy(): void;
+export interface GridInstance extends ComponentInstance {
   dim(isDimmed: boolean): void;
 }
 
@@ -18,7 +17,7 @@ const BUBBLES_PER_PAGE = 8;
 export function createBubbleGrid(
   catalog: ProjectCatalog,
   callbacks: BubbleGridCallbacks
-): ComponentInstance {
+): GridInstance {
   let scrollContainer: HTMLElement | null = null;
   const bubbleInstances: BubbleInstance[] = [];
 

@@ -1,11 +1,7 @@
 import './ProjectGrid.css';
 import { Project } from '../../../types/project';
-import { createProjectCard } from './ProjectCard';
-
-export interface ComponentInstance {
-  mount(container: HTMLElement): void;
-  destroy(): void;
-}
+import type { ComponentInstance } from '../../../types/component';
+import { renderProjectCard } from './ProjectCard';
 
 export function createProjectGrid(projects: Project[]): ComponentInstance {
   let section: HTMLElement | null = null;
@@ -31,7 +27,7 @@ export function createProjectGrid(projects: Project[]): ComponentInstance {
       } else {
         const sorted = [...projects].sort((a, b) => a.displayOrder - b.displayOrder);
         for (const project of sorted) {
-          grid.appendChild(createProjectCard(project));
+          grid.appendChild(renderProjectCard(project));
         }
       }
 

@@ -5,11 +5,7 @@ import { createBubbleGrid } from './BubbleGrid/BubbleGrid';
 import { createPageIndicator } from './PageIndicator/PageIndicator';
 import { createLiveArea } from './LiveArea/LiveArea';
 import { createAudioToggle } from './AudioToggle/AudioToggle';
-
-export interface ComponentInstance {
-  mount(container: HTMLElement): void;
-  destroy(): void;
-}
+import type { ComponentInstance } from '../../types/component';
 
 const BUBBLES_PER_PAGE = 8;
 

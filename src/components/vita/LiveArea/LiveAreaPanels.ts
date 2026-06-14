@@ -1,4 +1,5 @@
 import type { Project } from '../../../types/project';
+import { renderMarkdown } from '../../../utils/markdown';
 
 export interface PanelsInstance {
   mount(container: HTMLElement): void;
@@ -87,7 +88,7 @@ export function createLiveAreaPanels(): PanelsInstance {
 
     update(project: Project): void {
       if (descContent) {
-        descContent.textContent = project.description;
+        descContent.innerHTML = renderMarkdown(project.description);
       }
 
       if (challengesList) {

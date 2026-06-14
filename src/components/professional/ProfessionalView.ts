@@ -7,11 +7,7 @@ import { createFeaturedProject } from './FeaturedProject/FeaturedProject';
 import { createProjectGrid } from './ProjectGrid/ProjectGrid';
 import { createContact } from './Contact/Contact';
 import { createFooter } from './Footer/Footer';
-
-export interface ComponentInstance {
-  mount(container: HTMLElement): void;
-  destroy(): void;
-}
+import type { ComponentInstance } from '../../types/component';
 
 export function createProfessionalView(): ComponentInstance {
   const catalog = (projectsData as ProjectCatalog).sort(

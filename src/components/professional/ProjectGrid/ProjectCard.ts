@@ -2,7 +2,10 @@ import { Project } from '../../../types/project';
 
 const MAX_VISIBLE_CHIPS = 4;
 
-export function createProjectCard(project: Project): HTMLElement {
+// Render-helper, not a lifecycle component: it returns a bare HTMLElement and
+// attaches no event listeners, so it is exempt from the ComponentInstance
+// contract (no mount/destroy). The `render` prefix signals this intent.
+export function renderProjectCard(project: Project): HTMLElement {
   const card = document.createElement('article');
   card.className = 'pro-card';
 
