@@ -27,8 +27,8 @@
       "repository": "https://github.com/GoncaloCalvo/signal-judgment-trader"
     },
     "assets": {
-      "vitaBubbleIcon": "/assets/vita/icons/signal-judgment-trader.png",
-      "vitaLiveAreaBanner": "/assets/vita/banners/signal-judgment-trader.png",
+      "vitaBubbleIcon": "/assets/vita/icons/signal-judgment-trader.webp",
+      "vitaLiveAreaBanner": "/assets/vita/banners/signal-judgment-trader.webp",
       "imageAlt": "Signal + Judgment Trader — algorithmic trading system architecture diagram"
     },
     "completedAt": "2026-06-11",
@@ -93,8 +93,8 @@
       "liveApp": "https://goncalocalvo.github.io/dual-design-portfolio"
     },
     "assets": {
-      "vitaBubbleIcon": "/assets/vita/icons/dual-design-portfolio.png",
-      "vitaLiveAreaBanner": "/assets/vita/banners/dual-design-portfolio.png",
+      "vitaBubbleIcon": "/assets/vita/icons/dual-design-portfolio.webp",
+      "vitaLiveAreaBanner": "/assets/vita/banners/dual-design-portfolio.webp",
       "professionalCardImage": "/assets/professional/cards/portfolio-card.webp",
       "imageAlt": "Side-by-side comparison of the Professional Executive View and PS Vita Immersive View of the portfolio"
     },
