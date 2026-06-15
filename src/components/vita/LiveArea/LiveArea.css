@@ -29,6 +29,10 @@
     width: min(var(--livearea-max-width, 960px), 95vw);
     max-height: 90vh;
     overflow-y: auto;
+    /* Vertical drags still scroll content on touch; horizontal drags / the page
+       tab drive the peel gesture (see peel.ts). */
+    touch-action: pan-y;
+    will-change: clip-path;
     border-radius: var(--livearea-border-radius, 4px);
     background: var(--color-vita-bg-panel, rgba(8, 14, 30, 0.96));
     border: 1px solid var(--color-vita-border-livearea, rgba(0, 191, 255, 0.25));
@@ -263,11 +267,12 @@
     padding: 4px 10px;
   }
 
-  /* ── Close button ── */
+  /* ── Close button ──
+     Top-left so it stays clear of the peel page-tab in the top-right corner. */
   .vita-livearea-close {
     position: absolute;
     top: 12px;
-    right: 12px;
+    left: 12px;
     z-index: 10;
     width: 32px;
     height: 32px;
@@ -295,6 +300,48 @@
   .vita-livearea-close:focus-visible {
     outline: 2px solid var(--color-vita-cerulean, #00BFFF);
     outline-offset: 3px;
+  }
+
+  /* ── Peel page-tab handle (top-right corner) ──
+     Transparent hit target over the sheet's dog-eared corner. The visible fold is
+     drawn by the peel controller (peel.ts) as a real clip of the panel corner plus
+     the curled flap (.vita-livearea-fold), so grabbing here lifts the actual page.
+     A fixed sibling of the panel so it sits above the panel's scrollbar and stays
+     pinned to the corner instead of scrolling away. Positioned in LiveArea.ts. */
+  .vita-livearea-peel-handle {
+    position: fixed;
+    z-index: 525;
+    width: 56px;
+    height: 56px;
+    cursor: grab;
+    touch-action: none;
+  }
+
+  .vita-livearea-peel-handle:active {
+    cursor: grabbing;
+  }
+
+  /* ── Folded-corner flap ──
+     A fixed-position sibling of the panel (so the panel's own clip-path never
+     clips it). peel.ts positions and clips it to the curled-paper triangle and
+     drives its visibility. The gradient reads as the lit underside of the page. */
+  .vita-livearea-fold {
+    position: fixed;
+    z-index: 520;
+    pointer-events: none;
+    display: none;
+    will-change: clip-path, opacity;
+    background: linear-gradient(
+      135deg,
+      rgb(228, 240, 255) 0%,
+      rgb(150, 182, 224) 38%,
+      rgb(36, 64, 110) 100%
+    );
+    filter: drop-shadow(-10px 10px 16px rgba(0, 0, 0, 0.55));
+  }
+
+  .vita-livearea-fold.is-visible {
+    display: block;
   }
 
   /* ── Mobile: stack panels to single column ── */
