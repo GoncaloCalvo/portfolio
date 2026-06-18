@@ -42,7 +42,7 @@ jobs:
         run: npm run build
         env:
           # Matches the GitHub Pages subdirectory: https://<user>.github.io/<repo>/
-          VITE_BASE_PATH: /dual-design-portfolio/
+          VITE_BASE_PATH: /portfolio/
 
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v4

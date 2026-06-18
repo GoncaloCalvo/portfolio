@@ -2,6 +2,7 @@ import './FeaturedProject.css';
 import { Project } from '../../../types/project';
 import type { ComponentInstance } from '../../../types/component';
 import { renderMarkdown } from '../../../utils/markdown';
+import { assetUrl } from '../../../utils/assetUrl';
 
 export function createFeaturedProject(project: Project): ComponentInstance {
   let section: HTMLElement | null = null;
@@ -16,7 +17,7 @@ export function createFeaturedProject(project: Project): ComponentInstance {
       const imageHtml = project.assets.professionalCardImage
         ? `<img
             class="pro-featured-card__image"
-            src="${project.assets.professionalCardImage}"
+            src="${assetUrl(project.assets.professionalCardImage)}"
             alt="${project.assets.imageAlt}"
             width="1200"
             height="800"

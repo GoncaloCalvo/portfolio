@@ -1,4 +1,5 @@
 import { Howl } from 'howler';
+import { assetUrl } from '../utils/assetUrl';
 
 const AUDIO_MUTE_KEY = 'portfolio_audio_muted';
 
@@ -43,7 +44,7 @@ class AudioManager {
   init(): void {
     if (this.initialized) return;
     this.howl = new Howl({
-      src: ['/assets/audio/vita-ui-sounds.webm', '/assets/audio/vita-ui-sounds.mp3'],
+      src: [assetUrl('/assets/audio/vita-ui-sounds.webm'), assetUrl('/assets/audio/vita-ui-sounds.mp3')],
       sprite: SPRITE_MAP,
       volume: 1.0,
       mute: this.muted,

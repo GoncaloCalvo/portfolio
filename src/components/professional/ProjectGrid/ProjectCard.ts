@@ -1,4 +1,5 @@
 import { Project } from '../../../types/project';
+import { assetUrl } from '../../../utils/assetUrl';
 
 const MAX_VISIBLE_CHIPS = 4;
 
@@ -23,7 +24,7 @@ export function renderProjectCard(project: Project): HTMLElement {
   const imageHtml = project.assets.professionalCardImage
     ? `<img
         class="pro-card__image"
-        src="${project.assets.professionalCardImage}"
+        src="${assetUrl(project.assets.professionalCardImage)}"
         alt="${project.assets.imageAlt}"
         width="1200"
         height="800"

@@ -1,4 +1,5 @@
 import type { Project } from '../../../types/project';
+import { assetUrl } from '../../../utils/assetUrl';
 
 export interface BannerInstance {
   mount(container: HTMLElement): void;
@@ -43,7 +44,7 @@ export function createLiveAreaBanner(): BannerInstance {
 
     update(project: Project): void {
       if (imgEl) {
-        imgEl.src = project.assets.vitaLiveAreaBanner;
+        imgEl.src = assetUrl(project.assets.vitaLiveAreaBanner);
         imgEl.alt = project.assets.imageAlt;
       }
       if (titleEl) titleEl.textContent = project.title;

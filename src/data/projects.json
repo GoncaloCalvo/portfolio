@@ -90,8 +90,8 @@
     ],
     "techStack": ["TypeScript", "Vite", "CSS Custom Properties", "Howler.js", "Web Animations API", "View Transition API"],
     "links": {
-      "repository": "https://github.com/GoncaloCalvo/dual-design-portfolio",
-      "liveApp": "https://goncalocalvo.github.io/dual-design-portfolio"
+      "repository": "https://github.com/GoncaloCalvo/portfolio",
+      "liveApp": "https://goncalocalvo.github.io/portfolio"
     },
     "assets": {
       "vitaBubbleIcon": "/assets/vita/icons/dual-design-portfolio.webp",

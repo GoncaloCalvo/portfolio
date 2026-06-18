@@ -1,3 +1,4 @@
+/// <reference types="vite/client" />
 // Ambient module declarations for Vite asset imports
 
 declare module '*.css' {

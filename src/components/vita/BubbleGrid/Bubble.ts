@@ -1,6 +1,7 @@
 import './Bubble.css';
 import type { Project } from '../../../types/project';
 import { audioManager } from '../../../state/audioState';
+import { assetUrl } from '../../../utils/assetUrl';
 import type { ComponentInstance } from '../../../types/component';
 
 export interface BubbleInstance extends ComponentInstance {
@@ -51,7 +52,7 @@ export function createBubble(
       el.innerHTML = `
         <div class="vita-bubble__inner">
           <img
-            src="${project.assets.vitaBubbleIcon}"
+            src="${assetUrl(project.assets.vitaBubbleIcon)}"
             alt=""
             aria-hidden="true"
             width="512"
