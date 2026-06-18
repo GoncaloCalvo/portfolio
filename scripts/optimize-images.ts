@@ -46,7 +46,9 @@ const JOBS: Job[] = [
     height: 512,
     fit: 'inside',
     format: 'webp',
-    lossless: true,
+    // Lossy WebP (preserves alpha) — lossless blows past the 150KB spec cap on
+    // photographic/complex source art. High quality keeps icons crisp at 512px.
+    quality: 80,
     maxSizeBytes: 150 * 1024,
   },
   {
@@ -63,7 +65,7 @@ const JOBS: Job[] = [
   {
     label: 'Professional Card Images',
     srcDir: 'assets/professional/cards',
-    outDir: 'public/assets/professional',
+    outDir: 'public/assets/professional/cards',
     width: 1200,
     height: 800,
     fit: 'inside',

@@ -29,6 +29,7 @@
     "assets": {
       "vitaBubbleIcon": "/assets/vita/icons/signal-judgment-trader.webp",
       "vitaLiveAreaBanner": "/assets/vita/banners/signal-judgment-trader.webp",
+      "professionalCardImage": "/assets/professional/cards/signal-judgment-trader-card.webp",
       "imageAlt": "Signal + Judgment Trader — algorithmic trading system architecture diagram"
     },
     "completedAt": "2026-06-11",
@@ -56,11 +57,11 @@
     ],
     "techStack": ["Python", "FastAPI", "PostgreSQL", "ChromaDB", "Celery", "Redis", "Docker", "Gemini AI", "Alembic", "SQLAlchemy"],
     "links": {
-      "repository": "https://github.com/GoncaloCalvo/automated-continuity-pipeline"
+      "repository": "https://github.com/GoncaloCalvo/ACCP"
     },
     "assets": {
-      "vitaBubbleIcon": "/assets/vita/icons/accp-bubble.png",
-      "vitaLiveAreaBanner": "/assets/vita/banners/accp-banner.png",
+      "vitaBubbleIcon": "/assets/vita/icons/accp-bubble.webp",
+      "vitaLiveAreaBanner": "/assets/vita/banners/accp-banner.webp",
       "professionalCardImage": "/assets/professional/cards/accp-card.webp",
       "imageAlt": "Architecture diagram of the Automated Content Continuity Pipeline showing FastAPI, Celery workers, Redis broker, ChromaDB vector store, and PostgreSQL"
     },
