@@ -1,5 +1,6 @@
 import './Hero.css';
 import type { ComponentInstance } from '../../../types/component';
+import { assetUrl } from '../../../utils/assetUrl';
 
 export function createHero(): ComponentInstance {
   let section: HTMLElement | null = null;
@@ -25,7 +26,7 @@ export function createHero(): ComponentInstance {
           </p>
           <div class="pro-hero__cta">
             <a href="#pro-work" class="pro-hero__cta-primary">View My Work ↓</a>
-            <a href="/cv.pdf" class="pro-hero__cta-secondary" download>Download CV</a>
+            <a href="${assetUrl('/cv.pdf')}" class="pro-hero__cta-secondary" download>Download CV</a>
           </div>
         </div>
       `;
