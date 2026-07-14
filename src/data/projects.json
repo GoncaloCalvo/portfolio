@@ -37,6 +37,43 @@
     "featured": true
   },
   {
+    "id": "halfspace",
+    "title": "Halfspace Software Rasterizer",
+    "subtitle": "A CPU-only 3D renderer built from scratch in C#, no GPU, engine, or graphics API",
+    "description": "A CPU-only 3D software rasterizer written from scratch in C# on .NET 10. Every stage of the pipeline is implemented by hand: vertex transforms, projection, clipping, the perspective divide, triangle rasterization, depth testing, shading, and texture sampling. There is no OpenGL, DirectX, Unity, or third-party math or rendering library. The one external dependency, Silk.NET, is used strictly as a presentation layer that opens a window, reads input, and blits a CPU-side pixel buffer to the screen once per frame. It does no rendering work: the GPU only ever draws a single fullscreen quad holding the framebuffer, and if any triangle were rasterized on the GPU the whole premise would be broken.\n\nThe point of the project is understanding rather than usage. Most junior portfolios show an engine being driven; this shows what an engine and a GPU actually do underneath, from transforms through to shading, built and tested one milestone at a time. The renderer loads OBJ models, rasterizes them with an edge-function method and a z-buffer, and shades them with flat, Gouraud, and per-pixel Blinn-Phong lighting under a directional light. Textures are sampled with nearest and bilinear filtering and interpolated perspective-correctly. A hand-written math library (vectors, 4x4 matrices, projection and look-at) is unit tested against System.Numerics as an oracle, and a final milestone moves rasterization onto multiple threads as a measured performance pass rather than premature optimization.",
+    "technicalChallenges": [
+      {
+        "title": "Keeping the GPU out of the rendering path",
+        "description": "The whole value of the project evaporates if the GPU quietly does the work, so the from-scratch contract is explicit: Silk.NET and OpenGL exist only to upload one texture per frame and draw a single fullscreen quad that shows the framebuffer. Every pixel inside that buffer is produced by CPU code, from the edge-function inside test to the final shaded color. The rendering core is a separate library with no reference to Silk.NET at all, so a rendering stage cannot reach for the GPU even by accident."
+      },
+      {
+        "title": "Perspective-correct interpolation",
+        "description": "Interpolating vertex attributes linearly across a triangle in screen space looks fine on flat-shaded models and then falls apart the moment a textured plane recedes from the camera, warping straight lines into curves. The fix is to interpolate each varying divided by w along with 1/w, then divide back per fragment, which reconstructs the correct value in world space. A large checkerboard ground plane is kept as a dedicated test scene precisely because affine and perspective-correct interpolation are indistinguishable until something like it makes the error obvious."
+      },
+      {
+        "title": "A fill rule that leaves no cracks or double-drawn edges",
+        "description": "Two triangles that share an edge must together cover each pixel exactly once. Miss and thin cracks show through the mesh; double-cover and shared edges get drawn twice, which is visible under blending or an overdraw counter. The rasterizer walks each triangle's bounding box and tests pixels with edge functions, and a consistent top-left tie-breaking rule decides who owns a pixel that lands exactly on a shared edge. A two-triangle quad test asserts the seam is covered once and only once."
+      },
+      {
+        "title": "Performance as its own milestone, not a running distraction",
+        "description": "Correctness came first on a single thread, with optimization deliberately deferred so that a fast but subtly wrong renderer never got shipped. The dedicated performance pass then splits the framebuffer into tiles and rasterizes them across cores with Parallel.For, adds near-plane clipping so triangles crossing behind the camera are handled properly instead of rejected, and records before-and-after timings on named scenes so the speedup is a measured number rather than a claim."
+      }
+    ],
+    "techStack": ["C#", ".NET 10", "Silk.NET", "StbImageSharp", "xUnit", "BenchmarkDotNet"],
+    "links": {
+      "repository": "https://github.com/GoncaloCalvo/halfspace"
+    },
+    "assets": {
+      "vitaBubbleIcon": "/assets/vita/icons/halfspace.webp",
+      "vitaLiveAreaBanner": "/assets/vita/banners/halfspace.webp",
+      "professionalCardImage": "/assets/professional/cards/halfspace.webp",
+      "imageAlt": "Halfspace software rasterizer rendering a shaded, textured 3D model on screen"
+    },
+    "completedAt": "2026-07-14",
+    "displayOrder": 2,
+    "featured": false
+  },
+  {
     "id": "timbre-voice-changer",
     "title": "Timbre Voice Changer",
     "subtitle": "Real-time desktop voice changer that routes effects into Discord and games",
@@ -70,7 +107,7 @@
       "imageAlt": "Timbre desktop voice changer interface showing the voice picker, effect controls, and audio level meters"
     },
     "completedAt": "2026-06-27",
-    "displayOrder": 2,
+    "displayOrder": 3,
     "featured": false
   },
   {
@@ -107,7 +144,7 @@
       "imageAlt": "Trumpet Trainer web app showing a C Major Scale on a music staff with the playhead highlighting a note in green, alongside transport controls, a tempo slider, an account panel, and a score library"
     },
     "completedAt": "2026-06-21",
-    "displayOrder": 3,
+    "displayOrder": 4,
     "featured": false
   },
   {
@@ -140,7 +177,7 @@
       "imageAlt": "Architecture diagram of the Automated Content Continuity Pipeline showing FastAPI, Celery workers, Redis broker, ChromaDB vector store, and PostgreSQL"
     },
     "completedAt": "2025-12-01",
-    "displayOrder": 4,
+    "displayOrder": 5,
     "featured": false
   },
   {
@@ -174,7 +211,7 @@
       "imageAlt": "Side-by-side comparison of the Professional Executive View and PS Vita Immersive View of the portfolio"
     },
     "completedAt": "2026-06-01",
-    "displayOrder": 5,
+    "displayOrder": 6,
     "featured": false
   }
 ]
