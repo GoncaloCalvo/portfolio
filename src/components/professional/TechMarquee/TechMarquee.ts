@@ -2,10 +2,16 @@ import './TechMarquee.css';
 import { Project } from '../../../types/project';
 import type { ComponentInstance } from '../../../types/component';
 
-const EXTRA_TECHS = [
-  'TypeScript', 'Vite', 'CSS Layers', 'WebGL', 'GSAP', 'Node.js',
-  'GitHub Actions', 'Playwright', 'Storybook', 'Figma', 'WCAG AA',
-  'Web Animations API', 'IntersectionObserver', 'View Transitions API',
+// Curated, hand-ordered shortlist of the technologies worth foregrounding:
+// languages first, then the frameworks and domain themes that recur across the
+// work. Only names that actually appear in a project's techStack are rendered
+// (see the intersection in mount), so the strip can never advertise tech no
+// project backs, and it self-prunes when a project is added or removed.
+const CURATED_TECHS = [
+  'Python', 'TypeScript', 'C#', '.NET 10',
+  'React', 'Electron', 'Vite',
+  'FastAPI', 'PostgreSQL', 'Redis', 'Celery', 'Docker', 'LightGBM', 'ChromaDB',
+  'AudioWorklet', 'Silk.NET',
 ];
 
 export function createTechMarquee(projects: Project[]): ComponentInstance {
@@ -13,9 +19,9 @@ export function createTechMarquee(projects: Project[]): ComponentInstance {
 
   return {
     mount(container: HTMLElement): void {
-      const projectTechs = projects.flatMap(p => p.techStack);
-      // Deduplicate while preserving project techs first
-      const chips = [...new Set([...projectTechs, ...EXTRA_TECHS])];
+      const projectTechs = new Set(projects.flatMap(p => p.techStack));
+      // Keep only curated tech that an actual project backs, preserving curated order.
+      const chips = CURATED_TECHS.filter(t => projectTechs.has(t));
 
       const chipItems = chips.map(t => `<li class="pro-marquee__chip">${t}</li>`).join('');
 
