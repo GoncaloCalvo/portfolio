@@ -268,12 +268,14 @@
   }
 
   /* ── Close button ──
-     Top-left so it stays clear of the peel page-tab in the top-right corner. */
+     Top-left so it stays clear of the peel page-tab in the top-right corner.
+     A fixed-position sibling of the panel (like the peel handle), pinned to the
+     panel's top-left corner in JS (positionCloseBtn in LiveArea.ts). Fixed — not
+     absolute inside the panel — so it stays put while the panel body scrolls
+     instead of scrolling up out of view. Left/top are set at runtime. */
   .vita-livearea-close {
-    position: absolute;
-    top: 12px;
-    left: 12px;
-    z-index: 10;
+    position: fixed;
+    z-index: 525;
     width: 32px;
     height: 32px;
     border-radius: 50%;
@@ -286,6 +288,7 @@
     justify-content: center;
     cursor: pointer;
     transition:
+      opacity 200ms ease,
       background 150ms ease,
       border-color 150ms ease,
       color 150ms ease;
