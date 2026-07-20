@@ -17,12 +17,9 @@ export function createHero(): ComponentInstance {
           <p class="pro-hero__role">Software Engineer / Creative Technologist</p>
           <h1 id="pro-hero-title" class="pro-hero__name">Gonçalo Calvo</h1>
           <p class="pro-hero__pitch">
-            Informatics and Computing Engineering student at the University of Porto,
-            graduating in 2026. I build production-grade backends and interactive
-            frontends, from async LLM and vector-search pipelines in Python (FastAPI,
-            Celery, ChromaDB) to type-safe TypeScript interfaces. What I care about most
-            is correctness: systems that are reproducible, tested, and honest about their
-            own results.
+            Informatics and Computing Engineering student at the University of Porto, graduating in 2026. 
+            I build reliable backend systems, AI-powered applications, and modern web interfaces. 
+            My focus is creating software that is correct, reproducible, thoroughly tested, and transparent about its results.
           </p>
           <div class="pro-hero__cta">
             <a href="#pro-work" class="pro-hero__cta-primary">View My Work ↓</a>

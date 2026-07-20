@@ -15,9 +15,9 @@ export function createContact(): ComponentInstance {
 
       section.innerHTML = `
         <div class="pro-contact-section__inner">
-          <h2 id="pro-contact-heading" class="pro-contact-section__heading">Let's Work Together</h2>
+          <h2 id="pro-contact-heading" class="pro-contact-section__heading">Get In Touch</h2>
           <p class="pro-contact-section__directive">
-            Available for contract engagements, staff roles, and creative collaborations.
+            Looking for opportunities to build reliable software, solve challenging problems, and collaborate with great teams.
           </p>
           <a
             href="mailto:${CONTACT_EMAIL}"
