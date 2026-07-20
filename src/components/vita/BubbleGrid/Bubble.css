@@ -23,8 +23,8 @@
 
   .vita-bubble__inner {
     position: relative;
-    width: clamp(80px, 12vw, 120px);
-    height: clamp(80px, 12vw, 120px);
+    width: min(var(--vita-bubble-size, 120px), calc(var(--vita-bubble-cell, 120px) - 12px));
+    height: min(var(--vita-bubble-size, 120px), calc(var(--vita-bubble-cell, 120px) - 12px));
     border-radius: 50%;
     background: radial-gradient(
       ellipse 60% 40% at 40% 30%,
@@ -78,7 +78,7 @@
     font-weight: 600;
     color: rgba(255, 255, 255, 0.85);
     text-align: center;
-    max-width: 110px;
+    max-width: min(110px, 100%);
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;

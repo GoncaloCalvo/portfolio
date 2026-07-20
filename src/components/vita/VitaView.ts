@@ -1,13 +1,11 @@
 import type { ProjectCatalog } from '../../types/project';
 import projectsData from '../../data/projects.json';
 import { createVitaBackground } from './Background/VitaBackground';
-import { createBubbleGrid } from './BubbleGrid/BubbleGrid';
+import { createBubbleGrid, BUBBLES_PER_PAGE } from './BubbleGrid/BubbleGrid';
 import { createPageIndicator } from './PageIndicator/PageIndicator';
 import { createLiveArea } from './LiveArea/LiveArea';
 import { createAudioToggle } from './AudioToggle/AudioToggle';
 import type { ComponentInstance } from '../../types/component';
-
-const BUBBLES_PER_PAGE = 8;
 
 export function createVitaView(): ComponentInstance {
   const catalog = (projectsData as ProjectCatalog).sort(

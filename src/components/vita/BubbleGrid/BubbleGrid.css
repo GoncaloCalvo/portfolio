@@ -23,13 +23,23 @@
     justify-content: center;
   }
 
+  /* Staggered XMB-style rows: 3 bubbles, then 2 nested in the gaps below
+     them, then 3 again. Laid out on 6 half-width columns so a bubble
+     spanning columns 2–3 lands exactly between the ones above it.
+     Row/column placement is assigned per bubble by BubbleGrid.ts. */
   .vita-bubble-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, 130px);
+    grid-template-columns: repeat(6, calc(var(--vita-bubble-cell) / 2));
     justify-content: center;
-    gap: clamp(20px, 4vw, 48px);
-    padding: clamp(32px, 6vw, 80px);
+    column-gap: 0;
+    row-gap: var(--vita-bubble-row-gap);
+    padding-block: clamp(32px, 6vh, 80px);
     align-content: center;
     transition: opacity 200ms ease-out;
+  }
+
+  .vita-bubble-grid .vita-bubble {
+    grid-column: span 2;
+    min-width: 0;
   }
 }

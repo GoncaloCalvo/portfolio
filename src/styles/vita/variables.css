@@ -35,6 +35,19 @@
     --color-vita-border-panel:    rgba(0, 191, 255, 0.1);
     --color-vita-border-livearea: rgba(0, 191, 255, 0.25);
 
+    /* ── Bubble Grid Geometry ──
+       The home screen arranges bubbles in staggered 2/3/2 rows. The grid is
+       laid out in half-cells (6 per row) so the wider 3-row nests into the
+       gaps of the 2-rows above and below it. `--vita-bubble-cell` is capped
+       against the viewport so three cells always fit on narrow screens. */
+    --vita-bubble-size: clamp(80px, 12vw, 120px);
+    --vita-bubble-gap:  clamp(24px, 12vw, 150px);
+    --vita-bubble-cell: min(
+      calc(var(--vita-bubble-size) + var(--vita-bubble-gap)),
+      30vw
+    );
+    --vita-bubble-row-gap: clamp(8px, 3vh, 40px);
+
     /* ── Bubble Animation Defaults ──
        These are the fallback values. Each bubble overrides them via
        inline style custom properties set by BubbleGrid.ts. */
