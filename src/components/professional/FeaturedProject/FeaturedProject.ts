@@ -30,12 +30,14 @@ export function createFeaturedProject(project: Project): ComponentInstance {
         .map(t => `<li class="pro-featured-card__tech-chip">${t}</li>`)
         .join('');
 
-      const repoLink = `<a
-        href="${project.links.repository}"
-        class="pro-featured-card__link"
-        target="_blank"
-        rel="noopener noreferrer"
-      >GitHub ↗</a>`;
+      const repoLink = project.links.repository
+        ? `<a
+            href="${project.links.repository}"
+            class="pro-featured-card__link"
+            target="_blank"
+            rel="noopener noreferrer"
+          >GitHub ↗</a>`
+        : '';
 
       const demoLink = project.links.liveApp
         ? `<a
@@ -43,7 +45,7 @@ export function createFeaturedProject(project: Project): ComponentInstance {
             class="pro-featured-card__link"
             target="_blank"
             rel="noopener noreferrer"
-          >Live Demo ↗</a>`
+          >${project.links.liveAppLabel ?? 'Live Demo'} ↗</a>`
         : '';
 
       section.innerHTML = `

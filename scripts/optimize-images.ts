@@ -10,6 +10,7 @@
  *
  * Usage:
  *   npm run optimize:images
+ *   npm run optimize:images -- rumorsmith   (only sources whose name contains "rumorsmith")
  *   npx tsx scripts/optimize-images.ts
  */
 
@@ -21,6 +22,9 @@ import path from 'node:path';
 const ROOT = path.resolve(import.meta.dirname, '..');
 
 const RASTER_EXTS = new Set(['.jpg', '.jpeg', '.png', '.webp', '.avif', '.tiff', '.bmp']);
+
+/** Optional CLI arg: only process sources whose filename contains this text. */
+const NAME_FILTER = process.argv[2]?.toLowerCase();
 
 type FitMode = 'inside' | 'cover' | 'contain';
 
@@ -35,6 +39,14 @@ interface Job {
   quality?: number;
   lossless?: boolean;
   maxSizeBytes: number;
+  /** Upscale sources smaller than the bounds so every output hits the exact size. */
+  enlarge?: boolean;
+  /**
+   * Sources wider than the target ratio are scaled to full width and extended
+   * downward (edge pixels copied) instead of cover-cropped. The LiveArea shows
+   * only the top 960:200 slice of a banner, so a short strip renders untouched.
+   */
+  padBottomIfWider?: boolean;
 }
 
 const JOBS: Job[] = [
@@ -44,7 +56,10 @@ const JOBS: Job[] = [
     outDir: 'public/assets/vita/icons',
     width: 512,
     height: 512,
-    fit: 'inside',
+    // Non-square sources are centre-cropped to a square: padding them leaves
+    // transparent bars that show inside the bubble.
+    fit: 'cover',
+    enlarge: true,
     format: 'webp',
     // Lossy WebP (preserves alpha) — lossless blows past the 150KB spec cap on
     // photographic/complex source art. High quality keeps icons crisp at 512px.
@@ -58,6 +73,7 @@ const JOBS: Job[] = [
     width: 960,
     height: 544,
     fit: 'cover',
+    padBottomIfWider: true,
     format: 'webp',
     quality: 85,
     maxSizeBytes: 400 * 1024,
@@ -97,7 +113,8 @@ async function processJob(job: Job): Promise<void> {
 
   const entries = await readdir(srcAbs);
   const imageFiles = entries.filter(f =>
-    RASTER_EXTS.has(path.extname(f).toLowerCase())
+    RASTER_EXTS.has(path.extname(f).toLowerCase()) &&
+    (!NAME_FILTER || f.toLowerCase().includes(NAME_FILTER))
   );
 
   if (imageFiles.length === 0) {
@@ -116,13 +133,28 @@ async function processJob(job: Job): Promise<void> {
     const outPath = path.join(outAbs, `${baseName}.${job.format}`);
 
     try {
-      const pipeline = sharp(srcPath).resize({
-        width: job.width,
-        height: job.height,
-        fit: job.fit,
-        withoutEnlargement: true,
-        position: 'center',
-      });
+      const { width: srcW = 0, height: srcH = 0 } = await sharp(srcPath).metadata();
+      const padBottom =
+        job.padBottomIfWider && srcW / srcH > job.width / job.height;
+
+      // Resize to an intermediate buffer when padding: sharp applies extend
+      // before resize within a single pipeline, which would misplace the pad.
+      const pipeline = padBottom
+        ? sharp(
+            await sharp(srcPath).resize({ width: job.width }).toBuffer()
+          ).extend({
+            bottom: job.height - Math.round(srcH * (job.width / srcW)),
+            extendWith: 'copy',
+          })
+        : sharp(srcPath).resize({
+            width: job.width,
+            height: job.height,
+            fit: job.fit,
+            withoutEnlargement: !job.enlarge,
+            position: 'center',
+            background: { r: 0, g: 0, b: 0, alpha: 0 },
+            kernel: 'lanczos3',
+          });
 
       const outputBuffer: Buffer =
         job.format === 'webp'

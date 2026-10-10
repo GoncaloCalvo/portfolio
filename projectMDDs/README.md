@@ -18,7 +18,7 @@ They are **not** loaded by the application at runtime.
 | `description` | Full description, markdown. Honest and technical — no marketing fluff. |
 | `technicalChallenges` | 2–4 entries, each with a short `title` and a 2–4 sentence `description` |
 | `techStack` | Array of technology strings, primary technologies first |
-| `links` | `repository` (required), `liveApp` / `caseStudyUrl` (optional) |
+| `links` | `repository` (omit for closed-source projects; code links are then hidden), `liveApp` / `caseStudyUrl` (optional). At least one of `repository` or `liveApp` is required. |
 | `completedAt` | ISO 8601 date of completion or last major update |
 | `featured` | `true` for at most one project (rendered in the Professional hero position) |
 

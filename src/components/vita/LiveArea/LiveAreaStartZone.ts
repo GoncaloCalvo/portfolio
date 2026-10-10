@@ -44,10 +44,13 @@ export function createLiveAreaStartZone(): StartZoneInstance {
 
     update(project: Project): void {
       if (startBtn) {
-        startBtn.href = project.links.liveApp ?? project.links.repository;
+        startBtn.href = project.links.liveApp ?? project.links.repository ?? '#';
       }
       if (codeLink) {
-        codeLink.href = project.links.repository;
+        const { repository } = project.links;
+        codeLink.hidden = !repository;
+        if (repository) codeLink.href = repository;
+        else codeLink.removeAttribute('href');
       }
     },
 

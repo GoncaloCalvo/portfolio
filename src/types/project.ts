@@ -17,10 +17,12 @@ export interface TechnicalChallenge {
 }
 
 export interface ProjectLinks {
-  /** Full GitHub repository URL. Required. */
-  repository: string;
+  /** Full GitHub repository URL. Optional — omitted for closed-source projects; code links are hidden. */
+  repository?: string;
   /** Live deployment URL. Optional — some projects may be private or archived. */
   liveApp?: string;
+  /** Optional: link text for `liveApp` (e.g. "Play on itch.io"). Defaults to "Demo" / "Live Demo". */
+  liveAppLabel?: string;
   /** Optional: design spec, Figma link, or case study PDF */
   caseStudyUrl?: string;
 }

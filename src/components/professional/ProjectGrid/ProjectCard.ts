@@ -33,13 +33,22 @@ export function renderProjectCard(project: Project): HTMLElement {
       />`
     : `<div class="pro-card__image-placeholder" aria-hidden="true">Image coming soon</div>`;
 
+  const codeLink = project.links.repository
+    ? `<a
+        href="${project.links.repository}"
+        class="pro-card__link"
+        target="_blank"
+        rel="noopener noreferrer"
+      >Code ↗</a>`
+    : '';
+
   const demoLink = project.links.liveApp
     ? `<a
         href="${project.links.liveApp}"
         class="pro-card__link"
         target="_blank"
         rel="noopener noreferrer"
-      >Demo ↗</a>`
+      >${project.links.liveAppLabel ?? 'Demo'} ↗</a>`
     : '';
 
   card.innerHTML = `
@@ -49,12 +58,7 @@ export function renderProjectCard(project: Project): HTMLElement {
       <p class="pro-card__subtitle">${project.subtitle}</p>
       <ul class="pro-card__tech">${techChips}${moreChip}</ul>
       <div class="pro-card__links">
-        <a
-          href="${project.links.repository}"
-          class="pro-card__link"
-          target="_blank"
-          rel="noopener noreferrer"
-        >Code ↗</a>
+        ${codeLink}
         ${demoLink}
       </div>
     </div>
